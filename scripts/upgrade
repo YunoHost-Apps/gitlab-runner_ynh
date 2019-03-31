@@ -1,0 +1,83 @@
+#!/bin/bash
+
+#=================================================
+# GENERIC START
+#=================================================
+# IMPORT GENERIC HELPERS
+#=================================================
+
+source _common.sh
+source /usr/share/yunohost/helpers
+
+#=================================================
+# LOAD SETTINGS
+#=================================================
+ynh_print_info "Loading installation settings..."
+
+app=$YNH_APP_INSTANCE_NAME
+
+architecture=$(ynh_app_setting_get $app architecture)
+
+#=================================================
+# ENSURE DOWNWARD COMPATIBILITY
+#=================================================
+ynh_print_info "Ensuring downward compatibility..."
+
+# NOTING TO DO HERE YET
+
+#=================================================
+# BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
+#=================================================
+ynh_print_info "Backing up the app before upgrading (may take a while)..."
+
+# Backup the current version of the app
+ynh_backup_before_upgrade
+ynh_clean_setup () {
+	# restore it if the upgrade fails
+	ynh_restore_upgradebackup
+}
+# Exit if an error occurs during the execution of the script
+ynh_abort_if_errors
+
+#=================================================
+# STANDARD UPGRADE STEPS
+#=================================================
+# DOWNLOAD, CHECK AND UNPACK SOURCE
+#=================================================
+ynh_print_info "Upgrading source files..."
+
+update_src_version() {
+	source ./upgrade.d/upgrade.last.sh
+	cp ../conf/$architecture.src.default ../conf/$architecture.src
+	ynh_replace_string "__VERSION__" "$gitlab_runner_version" "../conf/$architecture.src"
+	ynh_replace_string "__SOURCE_FILENAME__" "$gitlab_runner_filename" "../conf/$architecture.src"
+
+	if [ $architecture = "x86-64" ]; then
+		ynh_replace_string "__SHA256_SUM__" "$gitlab_runner_x86_64_source_sha256" "../conf/$architecture.src"
+	elif [ $architecture = "i386" ]; then
+		ynh_replace_string "__SHA256_SUM__" "$gitlab_runner_i386_source_sha256" "../conf/$architecture.src"
+	elif [ $architecture = "arm" ]; then
+		ynh_replace_string "__SHA256_SUM__" "$gitlab_runner_arm_source_sha256" "../conf/$architecture.src"
+	fi
+}
+
+update_src_version
+
+tempdir="$(mktemp -d)"
+
+ynh_setup_source $tempdir $architecture
+
+dpkg -i $tempdir/$gitlab_runner_filename
+
+#=================================================
+# UPGRADE DEPENDENCIES
+#=================================================
+ynh_print_info "Upgrading dependencies..."
+
+ynh_install_app_dependencies $pkg_dependencies
+
+#=================================================
+# END OF SCRIPT
+#=================================================
+
+ynh_print_info "Upgrade of $app completed"

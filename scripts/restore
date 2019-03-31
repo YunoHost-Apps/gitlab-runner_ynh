@@ -1,0 +1,120 @@
+#!/bin/bash
+
+#=================================================
+# GENERIC START
+#=================================================
+# IMPORT GENERIC HELPERS
+#=================================================
+
+#Keep this path for calling _common.sh inside the execution's context of backup and restore scripts
+source ../settings/scripts/_common.sh
+source /usr/share/yunohost/helpers
+
+#=================================================
+# MANAGE SCRIPT FAILURE
+#=================================================
+
+ynh_clean_setup () {
+	#### Remove this function if there's nothing to clean before calling the remove script.
+	true
+}
+# Exit if an error occurs during the execution of the script
+ynh_abort_if_errors
+
+#=================================================
+# LOAD SETTINGS
+#=================================================
+ynh_print_info "Loading settings..."
+
+app=$YNH_APP_INSTANCE_NAME
+
+config_path=$(ynh_app_setting_get $app config_path)
+architecture=$(ynh_app_setting_get $app architecture)
+gitlab_url=$(ynh_app_setting_get $app gitlab_url)
+token=$(ynh_app_setting_get $app token)
+executor=$(ynh_app_setting_get $app executor)
+docker_image=$(ynh_app_setting_get $app docker_image)
+
+#=================================================
+# CHECK IF THE APP CAN BE RESTORED
+#=================================================
+ynh_print_info "Validating restoration parameters..."
+
+test ! -d $config_path \
+	|| ynh_die "There is already a directory: $config_path "
+
+#=================================================
+# STANDARD RESTORATION STEPS
+#=================================================
+# ADD DOCKER REPO
+#=================================================
+ynh_print_info "Restoring the docker repo..."
+
+ynh_install_extra_repo --repo="https://download.docker.com/linux/debian $(lsb_release -cs) stable" --key="https://download.docker.com/linux/debian/gpg" --name="${app}-docker"
+
+#=================================================
+# INSTALL DEPENDENCIES
+#=================================================
+ynh_print_info "Reinstalling dependencies..."
+
+ynh_install_app_dependencies $pkg_dependencies
+
+#=================================================
+# DOWNLOAD, CHECK AND UNPACK SOURCE
+#=================================================
+ynh_print_info "Reinstalling GitLab Runner..."
+
+update_src_version() {
+	source ../settings/scripts/upgrade.d/upgrade.last.sh
+	mkdir -p ../conf/
+	cp ../settings/conf/$architecture.src.default ../conf/$architecture.src
+	ynh_replace_string "__VERSION__" "$gitlab_runner_version" "../conf/$architecture.src"
+	ynh_replace_string "__SOURCE_FILENAME__" "$gitlab_runner_filename" "../conf/$architecture.src"
+
+	if [ $architecture = "x86-64" ]; then
+		ynh_replace_string "__SHA256_SUM__" "$gitlab_runner_x86_64_source_sha256" "../conf/$architecture.src"
+	elif [ $architecture = "i386" ]; then
+		ynh_replace_string "__SHA256_SUM__" "$gitlab_runner_i386_source_sha256" "../conf/$architecture.src"
+	elif [ $architecture = "arm" ]; then
+		ynh_replace_string "__SHA256_SUM__" "$gitlab_runner_arm_source_sha256" "../conf/$architecture.src"
+	fi
+}
+
+update_src_version
+
+tempdir="$(mktemp -d)"
+
+ynh_setup_source $tempdir $architecture
+
+dpkg -i $tempdir/$gitlab_runner_filename
+
+#=================================================
+# SPECIFIC SETUP
+#=================================================
+# SETUP GITLAB RUNNER
+#=================================================
+ynh_print_info "Configuring Gitlab Runner..."
+
+# Register the runner
+ynh_exec_warn_less $app register \
+	--non-interactive \
+	--url "$gitlab_url" \
+	--registration-token "$token" \
+	--executor "$executor" \
+	--docker-image "$docker_image" \
+	--description "Yunohost runner" \
+	--tag-list "$executor,$architecture" \
+	--run-untagged \
+	--locked="false" \
+
+#=================================================
+# ADVERTISE SERVICE IN ADMIN PANEL
+#=================================================
+
+yunohost service add $app --log "$app" --log_type="systemd"
+
+#=================================================
+# END OF SCRIPT
+#=================================================
+
+ynh_print_info "Restoration completed for $app"

@@ -1,0 +1,74 @@
+#!/bin/bash
+
+#=================================================
+# GENERIC START
+#=================================================
+# IMPORT GENERIC HELPERS
+#=================================================
+
+source _common.sh
+source /usr/share/yunohost/helpers
+
+#=================================================
+# LOAD SETTINGS
+#=================================================
+ynh_print_info "Loading installation settings..."
+
+app=$YNH_APP_INSTANCE_NAME
+
+config_path=$(ynh_app_setting_get $app config_path)
+
+#=================================================
+# STANDARD REMOVE
+#=================================================
+# REMOVE SERVICE FROM ADMIN PANEL
+#=================================================
+
+# Remove a service from the admin panel, added by `yunohost service add`
+if yunohost service status $app >/dev/null 2>&1
+then
+	ynh_print_info "Removing $app service"
+	yunohost service remove $app
+fi
+
+#=================================================
+# UNREGISTER ALL RUNNERS
+#=================================================
+ynh_print_info "Unregistering all runners..."
+
+ynh_exec_warn_less $app unregister --all-runners
+
+#=================================================
+# REMOVE GITLAB RUNNER
+#=================================================
+ynh_print_info "Removing Gitlab Runner"
+
+dpkg --remove $app
+
+#=================================================
+# REMOVE DEPENDENCIES
+#=================================================
+ynh_print_info "Removing dependencies"
+
+# Remove metapackage and its dependencies
+ynh_remove_app_dependencies
+
+#=================================================
+# REMOVE APP CONFIG DIR
+#=================================================
+ynh_print_info "Removing app config directory"
+
+ynh_secure_remove "$config_path"
+
+#=================================================
+# REMOVE NGINX CONFIGURATION
+#=================================================
+ynh_print_info "Removing a repo..."
+
+ynh_remove_extra_repo --name="${app}-docker"
+
+#=================================================
+# END OF SCRIPT
+#=================================================
+
+ynh_print_info "Removal of $app completed"

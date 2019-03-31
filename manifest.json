@@ -1,0 +1,58 @@
+{
+    "name": "Gitlab Runner",
+    "id": "gitlab-runner",
+    "packaging_format": 1,
+    "description": {
+        "en": "GitLab Runner is a continuous integration tool to use with a GitLab instance (YNH or not).",
+        "fr": "GitLab Runner est un outil d'intégration continue à utiliser avec une instance GitLab (YNH ou non)."
+    },
+    "version": "11.9.0~ynh1",
+    "url": "https://gitlab.com/gitlab-org/gitlab-runner",
+    "license": "MIT",
+    "maintainer": {
+        "name": "Kay0u",
+        "email": "pierre@kayou.io"
+    },
+    "requirements": {
+        "yunohost": ">= 3.4"
+    },
+    "multi_instance": false,
+    "services": [
+    ],
+    "arguments": {
+        "install" : [
+            {
+                "name": "gitlab_url",
+                "type": "string",
+                "ask": {
+                    "en": "Please enter the gitlab-ci coordinator URL (e.g. https://gitlab.com )",
+                    "fr": "Veuillez entrer l'URL du coordinateur gitlab-ci (par ex. https://gitlab.com)"
+                },
+                "example": "https://gitlab.com/"
+            },
+            {
+                "name": "token",
+                "type": "password",
+                "ask": {
+                    "en": "Please enter the gitlab-ci token for this runner",
+                    "fr": "Veuillez entrer le jeton gitlab-ci pour ce runner"
+                },
+                "help": {
+                    "en": "This token can be retrived at this location: Gitlab Project->Settings->Runner",
+                    "fr": "Ce token peut être récupéré à cet emplacement : Projet Gitlab->Settings->Runner"
+                },
+                "example": "xxx"
+            },
+            {
+                "name": "docker_image",
+                "type": "string",
+                "ask": {
+                    "en": "Please enter the Docker image (eg. ruby:2.1)",
+                    "fr": "Veuillez entrer l'image du Docker (ex. ruby:2.1)"
+                },
+                "example": "alpine:latest",
+                "default": "alpine:latest"
+            }
+        ]
+    }
+}

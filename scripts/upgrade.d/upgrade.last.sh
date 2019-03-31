@@ -1,0 +1,9 @@
+gitlab_runner_version="11.9.0"
+
+gitlab_runner_x86_64_source_sha256="352d7de7802cd4712df2b340e05704243e621628a64b5ce289b81938d4939f50"
+
+gitlab_runner_i386_source_sha256="e4aa2c225b1edeebb5e897fc34ef3fb245f26405f0dbfddd23da20e4c011abb9"
+
+gitlab_runner_arm_source_sha256="f37be2b3a67aa3cd7f75e7a0d3a03408aa39d2aea4bfc85ec1b9d2a789d9b0bc"
+
+gitlab_runner_filename="gitlab-runner-${gitlab_runner_version}.deb"
