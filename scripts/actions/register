@@ -1,0 +1,114 @@
+#!/bin/bash
+
+#=================================================
+# GENERIC STARTING
+#=================================================
+# IMPORT GENERIC HELPERS
+#=================================================
+
+source scripts/_common.sh
+source /usr/share/yunohost/helpers
+
+#=================================================
+# RETRIEVE ARGUMENTS
+#=================================================
+
+new_gitlab_url=${YNH_ACTION_GITLAB_URL}
+new_token=${YNH_ACTION_TOKEN}
+new_docker_image=${YNH_ACTION_DOCKER_IMAGE}
+
+app=${YNH_APP_INSTANCE_NAME:-$YNH_APP_ID}
+
+gitlab_url=$(ynh_app_setting_get $app gitlab_url)
+token=$(ynh_app_setting_get $app token)
+docker_image=$(ynh_app_setting_get $app docker_image)
+executor=$(ynh_app_setting_get $app executor)
+architecture=$(ynh_app_setting_get $app architecture)
+
+#=================================================
+# CHECK IF ARGUMENTS ARE CORRECT
+#=================================================
+
+# Adding a comma at the end
+if [ ${new_gitlab_url: -1} != "," ]; then
+	new_gitlab_url=${new_gitlab_url},
+fi
+
+# Adding a comma at the end
+if [ ${new_token: -1} != "," ]; then
+	new_token=${new_token},
+fi
+
+# Adding a comma at the end
+if [ ${new_docker_image: -1} != "," ]; then
+	new_docker_image=${new_docker_image},
+fi
+
+#=================================================
+# BACKUP BEFORE ACTION THEN ACTIVE TRAP
+#=================================================
+ynh_print_info "Backing up the app before action (may take a while)..."
+
+# Backup the current version of the app
+ynh_backup_before_action
+ynh_clean_setup () {
+	# restore it if the action fails
+	ynh_restore_actionbackup
+}
+# Exit if an error occurs during the execution of the script
+ynh_abort_if_errors
+
+#=================================================
+# CHECK IF AN ACTION HAS TO BE DONE
+#=================================================
+
+
+#=================================================
+# SPECIFIC ACTION
+#=================================================
+# REGISTER THE RUNNER
+#=================================================
+ynh_print_info "Register Gitlab Runner..."
+
+# Can be registered several time, to do this give a list of gitlab_url, token and docker_image separated by a comma.
+split_char=","
+
+nb_to_register=$(echo "${new_gitlab_url}" | awk -F"${split_char}" '{print NF-1}')
+
+for i in $(seq $nb_to_register)
+do
+	url=$(echo $new_gitlab_url | cut -d$split_char -f$i)
+	tok=$(echo $new_token | cut -d$split_char -f$i)
+	docker_img=$(echo $new_docker_image | cut -d$split_char -f$i)
+
+	# Register the runner
+	ynh_exec_warn_less $app register \
+		--non-interactive \
+		--url "$url" \
+		--registration-token "$tok" \
+		--executor "$executor" \
+		--docker-image "$docker_img" \
+		--description "Yunohost runner" \
+		--tag-list "$executor,$architecture" \
+		--run-untagged \
+		--locked="false"
+
+	gitlab_url=${gitlab_url}${url},
+	token=${token}${tok},
+	docker_image=${docker_image}${docker_img},
+done
+
+#=================================================
+# STORE SETTINGS
+#=================================================
+ynh_print_info "Storing settings..."
+
+ynh_app_setting_set $app gitlab_url $gitlab_url
+ynh_app_setting_set $app token $token
+ynh_app_setting_set $app docker_image $docker_image
+
+#=================================================
+# END OF SCRIPT
+#=================================================
+
+ynh_print_info "Action of $app completed"
