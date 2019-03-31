@@ -53,6 +53,21 @@ fi
 # By default, the runner will use docker to run your builds. PR are welcomes to implement more executors
 executor="docker"
 
+# Adding a comma at the end
+if [ ${gitlab_url: -1} != "," ]; then
+	gitlab_url=${gitlab_url},
+fi
+
+# Adding a comma at the end
+if [ ${token: -1} != "," ]; then
+	token=${token},
+fi
+
+# Adding a comma at the end
+if [ ${docker_image: -1} != "," ]; then
+	docker_image=${docker_image},
+fi
+
 #=================================================
 # STORE SETTINGS FROM MANIFEST
 #=================================================
@@ -116,17 +131,29 @@ dpkg -i $tempdir/$gitlab_runner_filename
 #=================================================
 ynh_print_info "Configuring Gitlab Runner..."
 
-# Register the runner
-ynh_exec_warn_less $app register \
-	--non-interactive \
-	--url "$gitlab_url" \
-	--registration-token "$token" \
-	--executor "$executor" \
-	--docker-image "$docker_image" \
-	--description "Yunohost runner" \
-	--tag-list "$executor,$architecture" \
-	--run-untagged \
-	--locked="false" \
+# Can be registered several time, to do this give a list of gitlab_url, token and docker_image separated by a comma.
+split_char=","
+
+nb_to_register=$(echo "${gitlab_url}" | awk -F"${split_char}" '{print NF-1}')
+
+for i in $(seq $nb_to_register)
+do
+	url=$(echo $gitlab_url | cut -d$split_char -f$i)
+	tok=$(echo $token | cut -d$split_char -f$i)
+	docker_img=$(echo $docker_image | cut -d$split_char -f$i)
+
+	# Register the runner
+	ynh_exec_warn_less $app register \
+		--non-interactive \
+		--url "$url" \
+		--registration-token "$tok" \
+		--executor "$executor" \
+		--docker-image "$docker_img" \
+		--description "Yunohost runner" \
+		--tag-list "$executor,$architecture" \
+		--run-untagged \
+		--locked="false"
+done
 
 #=================================================
 # STORE THE CONFIG FILE CHECKSUM

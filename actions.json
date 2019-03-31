@@ -1,26 +1,17 @@
-{
-    "name": "Gitlab Runner",
-    "id": "gitlab-runner",
-    "packaging_format": 1,
-    "description": {
-        "en": "GitLab Runner is a continuous integration tool to use with a GitLab instance (YNH or not).",
-        "fr": "GitLab Runner est un outil d'intégration continue à utiliser avec une instance GitLab (YNH ou non)."
-    },
-    "version": "11.9.0~ynh2",
-    "url": "https://gitlab.com/gitlab-org/gitlab-runner",
-    "license": "MIT",
-    "maintainer": {
-        "name": "Kay0u",
-        "email": "pierre@kayou.io"
-    },
-    "requirements": {
-        "yunohost": ">= 3.4"
-    },
-    "multi_instance": false,
-    "services": [
-    ],
-    "arguments": {
-        "install" : [
+[
+    {
+        "id": "register",
+        "name": "Register",
+        "command": "/bin/bash scripts/actions/register",
+        "user": "root",
+        "accepted_return_codes": [
+            0
+        ],
+        "description": {
+            "en": "Add this runner to a new repo/GitLab instance.",
+            "fr": "Ajoute ce runner à un nouveau·elle dépôt/instance GitLab."
+        },
+        "arguments": [
             {
                 "name": "gitlab_url",
                 "type": "string",
@@ -55,4 +46,4 @@
             }
         ]
     }
-}
+]
