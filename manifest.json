@@ -10,7 +10,7 @@
     "url": "https://gitlab.com/gitlab-org/gitlab-runner",
     "license": "MIT",
     "maintainer": {
-        "name": "Kay0u",
+        "name": "kay0u",
         "email": "pierre@kayou.io"
     },
     "requirements": {
