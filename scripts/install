@@ -7,6 +7,7 @@
 #=================================================
 
 source _common.sh
+source _experimental.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
