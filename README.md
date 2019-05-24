@@ -11,7 +11,7 @@ If you don't have YunoHost, please see [here](https://yunohost.org/#/install) to
 ## Overview
 GitLab Runner is a continuous integration tool to use with a GitLab instance (YNH or not).
 
-**Shipped version:** 11.10.1
+**Shipped version:** 11.11.0
 
 ## Screenshots
 
