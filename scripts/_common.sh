@@ -92,8 +92,6 @@ ynh_backup_before_action () {
 # EXPERIMENTAL HELPERS
 #=================================================
 
-# Moved to _experimental.sh because of a bug of linter
-
 #=================================================
 # FUTURE OFFICIAL HELPERS
 #=================================================
