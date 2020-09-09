@@ -29,8 +29,8 @@
                     "fr": "Veuillez entrer l'URL du coordinateur gitlab-ci"
                 },
                 "help": {
-                    "en": "This url can be retrived at this location: Gitlab Project->Settings->Runner or: Admin Area->Overview->Runners",
-                    "fr": "Cet url peut être récupéré à cet emplacement : Projet Gitlab->Settings->Runner or: Admin Area->Overview->Runners"
+                    "en": "This URL can be retrieved at this location: GitLab Project->Settings->Runner or: Admin Area->Overview->Runners",
+                    "fr": "Cet URL peut être récupéré à cet emplacement : Projet GitLab->Settings->Runner ou : Admin Area->Overview->Runners"
                 },
                 "example": "https://gitlab.com/"
             },
@@ -38,12 +38,12 @@
                 "name": "token",
                 "type": "string",
                 "ask": {
-                    "en": "Please enter the gitlab-ci token for this runner",
-                    "fr": "Veuillez entrer le jeton gitlab-ci pour ce runner"
+                    "en": "Please enter the gitlab-ci token for this Runner",
+                    "fr": "Veuillez entrer le jeton gitlab-ci pour ce Runner"
                 },
                 "help": {
-                    "en": "This token can be retrived at this location: Gitlab Project->Settings->Runner or: Admin Area->Overview->Runners",
-                    "fr": "Ce token peut être récupéré à cet emplacement : Projet Gitlab->Settings->Runner or: Admin Area->Overview->Runners"
+                    "en": "This token can be retrieved at this location: GitLab Project->Settings->Runner or: Admin Area->Overview->Runners",
+                    "fr": "Ce token peut être récupéré à cet emplacement : Projet GitLab->Settings->Runner ou : Admin Area->Overview->Runners"
                 },
                 "example": "xxx"
             },
