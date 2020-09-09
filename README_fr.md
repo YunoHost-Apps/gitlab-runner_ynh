@@ -11,7 +11,7 @@ Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour
 ## Vue d'ensemble
 GitLab Runner est un outil d'intégration continue à utiliser avec une instance GitLab (YNH ou non).
 
-**Version incluse:** 13.1.0
+**Version incluse:** 13.2.3
 
 ## Captures d'écran
 
@@ -36,6 +36,7 @@ Comment configurer cette application: via le panneau d'administration de GitLab 
 
 * Pour récupérer les informations à fournir à l'installation comme le `token` ou `l'url gitlab` vous devez vous rendre ici : `Settings->CI/CD->Runners->"Set up a specific Runner manually"` dans le projet 
 ou la section admin de l'instance GitLab à relier à ce runner.
+* Si vous avez ce message pendant un travail : `Could not resolve host : you.domain.tld`, vous pouvez ajouter `dns_search = ["you.domain.tld"]` dans la section `[[runners]]`.
 
 ## Links
 

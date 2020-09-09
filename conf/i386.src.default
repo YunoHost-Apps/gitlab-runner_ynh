@@ -1,4 +1,4 @@
-SOURCE_URL=https://packages.gitlab.com/runner/gitlab-runner/packages/debian/stretch/gitlab-runner___VERSION___i386.deb/download.deb
+SOURCE_URL=https://packages.gitlab.com/runner/gitlab-runner/packages/debian/buster/gitlab-runner___VERSION___i386.deb/download.deb
 SOURCE_SUM=__SHA256_SUM__
 SOURCE_SUM_PRG=sha256sum
 SOURCE_FILENAME=__SOURCE_FILENAME__
