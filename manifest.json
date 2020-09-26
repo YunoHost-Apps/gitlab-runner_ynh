@@ -1,5 +1,5 @@
 {
-    "name": "Gitlab Runner",
+    "name": "GitLab Runner",
     "id": "gitlab-runner",
     "packaging_format": 1,
     "description": {
@@ -25,8 +25,8 @@
                 "name": "gitlab_url",
                 "type": "string",
                 "ask": {
-                    "en": "Please enter the gitlab-ci coordinator URL",
-                    "fr": "Veuillez entrer l'URL du coordinateur gitlab-ci"
+                    "en": "Please enter the GitLab-CI coordinator URL",
+                    "fr": "Veuillez entrer l'URL du coordinateur GitLab-CI"
                 },
                 "help": {
                     "en": "This URL can be retrieved at this location: GitLab Project->Settings->Runner or: Admin Area->Overview->Runners",
@@ -38,8 +38,8 @@
                 "name": "token",
                 "type": "string",
                 "ask": {
-                    "en": "Please enter the gitlab-ci token for this Runner",
-                    "fr": "Veuillez entrer le jeton gitlab-ci pour ce Runner"
+                    "en": "Please enter the GitLab-CI token for this Runner",
+                    "fr": "Veuillez entrer le jeton GitLab-CI pour ce Runner"
                 },
                 "help": {
                     "en": "This token can be retrieved at this location: GitLab Project->Settings->Runner or: Admin Area->Overview->Runners",
