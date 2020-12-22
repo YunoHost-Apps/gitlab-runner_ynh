@@ -5,7 +5,7 @@
 #=================================================
 
 # dependencies used by the app
-pkg_dependencies="ca-certificates git curl tar docker-ce"
+pkg_dependencies="ca-certificates git curl tar docker-ce docker-ce-cli containerd.io"
 
 #=================================================
 # PERSONAL HELPERS

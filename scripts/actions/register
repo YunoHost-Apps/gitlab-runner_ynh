@@ -47,7 +47,7 @@ fi
 #=================================================
 # BACKUP BEFORE ACTION THEN ACTIVE TRAP
 #=================================================
-ynh_print_info "Backing up the app before action (may take a while)..."
+ynh_script_progression "Backing up the app before action (may take a while)..."
 
 # Backup the current version of the app
 ynh_backup_before_action
@@ -68,7 +68,7 @@ ynh_abort_if_errors
 #=================================================
 # REGISTER THE RUNNER
 #=================================================
-ynh_print_info "Register Gitlab Runner..."
+ynh_script_progression "Register Gitlab Runner..."
 
 # Can be registered several time, to do this give a list of gitlab_url, token and docker_image separated by a comma.
 split_char=","
@@ -101,7 +101,7 @@ done
 #=================================================
 # STORE SETTINGS
 #=================================================
-ynh_print_info "Storing settings..."
+ynh_script_progression "Storing settings..."
 
 ynh_app_setting_set $app gitlab_url $gitlab_url
 ynh_app_setting_set $app token $token
@@ -111,4 +111,4 @@ ynh_app_setting_set $app docker_image $docker_image
 # END OF SCRIPT
 #=================================================
 
-ynh_print_info "Action of $app completed"
+ynh_script_progression "Action of $app completed" --last

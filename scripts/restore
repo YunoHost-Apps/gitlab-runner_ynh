@@ -24,7 +24,7 @@ ynh_abort_if_errors
 #=================================================
 # LOAD SETTINGS
 #=================================================
-ynh_print_info "Loading settings..."
+ynh_script_progression "Loading settings..."
 
 app=$YNH_APP_INSTANCE_NAME
 
@@ -38,7 +38,7 @@ docker_image=$(ynh_app_setting_get $app docker_image)
 #=================================================
 # CHECK IF THE APP CAN BE RESTORED
 #=================================================
-ynh_print_info "Validating restoration parameters..."
+ynh_script_progression "Validating restoration parameters..."
 
 test ! -d $config_path \
 	|| ynh_die "There is already a directory: $config_path "
@@ -48,21 +48,21 @@ test ! -d $config_path \
 #=================================================
 # ADD DOCKER REPO
 #=================================================
-ynh_print_info "Restoring the docker repo..."
+ynh_script_progression "Restoring the docker repo..."
 
 ynh_install_extra_repo --repo="https://download.docker.com/linux/debian $(lsb_release -cs) stable" --key="https://download.docker.com/linux/debian/gpg" --name="${app}-docker"
 
 #=================================================
 # INSTALL DEPENDENCIES
 #=================================================
-ynh_print_info "Reinstalling dependencies..."
+ynh_script_progression "Reinstalling dependencies..."
 
 ynh_install_app_dependencies $pkg_dependencies
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
-ynh_print_info "Reinstalling GitLab Runner..."
+ynh_script_progression "Reinstalling GitLab Runner..."
 
 update_src_version() {
 	source ../settings/scripts/upgrade.d/upgrade.last.sh
@@ -93,7 +93,7 @@ dpkg -i $tempdir/$gitlab_runner_filename
 #=================================================
 # SETUP GITLAB RUNNER
 #=================================================
-ynh_print_info "Configuring Gitlab Runner..."
+ynh_script_progression "Configuring Gitlab Runner..."
 
 # Can be registered several time, to do this give a list of gitlab_url, token and docker_image separated by a comma.
 split_char=","
@@ -123,10 +123,10 @@ done
 # ADVERTISE SERVICE IN ADMIN PANEL
 #=================================================
 
-yunohost service add $app --log "$app" --log_type="systemd"
+yunohost service add $app
 
 #=================================================
 # END OF SCRIPT
 #=================================================
 
-ynh_print_info "Restoration completed for $app"
+ynh_script_progression "Restoration completed for $app" --last

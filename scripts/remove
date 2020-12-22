@@ -12,7 +12,7 @@ source /usr/share/yunohost/helpers
 #=================================================
 # LOAD SETTINGS
 #=================================================
-ynh_print_info "Loading installation settings..."
+ynh_script_progression "Loading installation settings..."
 
 app=$YNH_APP_INSTANCE_NAME
 
@@ -27,28 +27,28 @@ config_path=$(ynh_app_setting_get $app config_path)
 # Remove a service from the admin panel, added by `yunohost service add`
 if yunohost service status $app >/dev/null 2>&1
 then
-	ynh_print_info "Removing $app service"
+	ynh_script_progression "Removing $app service"
 	yunohost service remove $app
 fi
 
 #=================================================
 # UNREGISTER ALL RUNNERS
 #=================================================
-ynh_print_info "Unregistering all runners..."
+ynh_script_progression "Unregistering all runners..."
 
 ynh_exec_warn_less $app unregister --all-runners
 
 #=================================================
 # REMOVE GITLAB RUNNER
 #=================================================
-ynh_print_info "Removing Gitlab Runner"
+ynh_script_progression "Removing Gitlab Runner"
 
 dpkg --remove $app
 
 #=================================================
 # REMOVE DEPENDENCIES
 #=================================================
-ynh_print_info "Removing dependencies"
+ynh_script_progression "Removing dependencies"
 
 # Remove metapackage and its dependencies
 ynh_remove_app_dependencies
@@ -56,14 +56,14 @@ ynh_remove_app_dependencies
 #=================================================
 # REMOVE APP CONFIG DIR
 #=================================================
-ynh_print_info "Removing app config directory"
+ynh_script_progression "Removing app config directory"
 
 ynh_secure_remove "$config_path"
 
 #=================================================
 # REMOVE NGINX CONFIGURATION
 #=================================================
-ynh_print_info "Removing a repo..."
+ynh_script_progression "Removing a repo..."
 
 ynh_remove_extra_repo --name="${app}-docker"
 
@@ -71,4 +71,4 @@ ynh_remove_extra_repo --name="${app}-docker"
 # END OF SCRIPT
 #=================================================
 
-ynh_print_info "Removal of $app completed"
+ynh_script_progression "Removal of $app completed" --last

@@ -33,7 +33,7 @@ app=$YNH_APP_INSTANCE_NAME
 #=================================================
 # CHECK IF THE APP CAN BE INSTALLED WITH THESE ARGS
 #=================================================
-ynh_print_info "Validating installation parameters..."
+ynh_script_progression "Validating installation parameters..."
 
 config_path=/etc/$app
 test ! -e "$config_path" || ynh_die "This path already contains a folder"
@@ -71,7 +71,7 @@ fi
 #=================================================
 # STORE SETTINGS FROM MANIFEST
 #=================================================
-ynh_print_info "Storing installation settings..."
+ynh_script_progression "Storing installation settings..."
 
 ynh_app_setting_set $app gitlab_url $gitlab_url
 ynh_app_setting_set $app token $token
@@ -85,21 +85,21 @@ ynh_app_setting_set $app config_path $config_path
 #=================================================
 # ADD DOCKER REPO
 #=================================================
-ynh_print_info "Adding a new repo..."
+ynh_script_progression "Adding a new repo..."
 
 ynh_install_extra_repo --repo="https://download.docker.com/linux/debian $(lsb_release -cs) stable" --key="https://download.docker.com/linux/debian/gpg" --name="${app}-docker"
 
 #=================================================
 # INSTALL DEPENDENCIES
 #=================================================
-ynh_print_info "Installing dependencies..."
+ynh_script_progression "Installing dependencies..."
 
 ynh_install_app_dependencies $pkg_dependencies
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
-ynh_print_info "Setting up source files..."
+ynh_script_progression "Setting up source files..."
 
 update_src_version() {
 	source ./upgrade.d/upgrade.last.sh
@@ -129,7 +129,7 @@ dpkg -i $tempdir/$gitlab_runner_filename
 #=================================================
 # SETUP GITLAB RUNNER
 #=================================================
-ynh_print_info "Configuring Gitlab Runner..."
+ynh_script_progression "Configuring Gitlab Runner..."
 
 # Can be registered several time, to do this give a list of gitlab_url, token and docker_image separated by a comma.
 split_char=","
@@ -168,10 +168,10 @@ ynh_store_file_checksum "$config_path/config.toml"
 # ADVERTISE SERVICE IN ADMIN PANEL
 #=================================================
 
-yunohost service add $app --log "$app" --log_type="systemd"
+yunohost service add $app
 
 #=================================================
 # END OF SCRIPT
 #=================================================
 
-ynh_print_info "Installation of $app completed"
+ynh_script_progression "Installation of $app completed" --last
