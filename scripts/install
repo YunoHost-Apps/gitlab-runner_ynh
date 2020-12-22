@@ -33,7 +33,7 @@ app=$YNH_APP_INSTANCE_NAME
 #=================================================
 # CHECK IF THE APP CAN BE INSTALLED WITH THESE ARGS
 #=================================================
-ynh_script_progression "Validating installation parameters..."
+ynh_script_progression --message="Validating installation parameters..."
 
 config_path=/etc/$app
 test ! -e "$config_path" || ynh_die "This path already contains a folder"
@@ -71,48 +71,48 @@ fi
 #=================================================
 # STORE SETTINGS FROM MANIFEST
 #=================================================
-ynh_script_progression "Storing installation settings..."
+ynh_script_progression --message="Storing installation settings..."
 
-ynh_app_setting_set $app gitlab_url $gitlab_url
-ynh_app_setting_set $app token $token
-ynh_app_setting_set $app executor $executor
-ynh_app_setting_set $app docker_image $docker_image
-ynh_app_setting_set $app architecture $architecture
-ynh_app_setting_set $app config_path $config_path
+ynh_app_setting_set --app=$app --key=gitlab_url --value=$gitlab_url
+ynh_app_setting_set --app=$app --key=token --value=$token
+ynh_app_setting_set --app=$app --key=executor --value=$executor
+ynh_app_setting_set --app=$app --key=docker_image --value=$docker_image
+ynh_app_setting_set --app=$app --key=architecture --value=$architecture
+ynh_app_setting_set --app=$app --key=config_path --value=$config_path
 
 #=================================================
 # STANDARD MODIFICATIONS
 #=================================================
 # ADD DOCKER REPO
 #=================================================
-ynh_script_progression "Adding a new repo..."
+ynh_script_progression --message="Adding a new repo..."
 
 ynh_install_extra_repo --repo="https://download.docker.com/linux/debian $(lsb_release -cs) stable" --key="https://download.docker.com/linux/debian/gpg" --name="${app}-docker"
 
 #=================================================
 # INSTALL DEPENDENCIES
 #=================================================
-ynh_script_progression "Installing dependencies..."
+ynh_script_progression --message="Installing dependencies..."
 
 ynh_install_app_dependencies $pkg_dependencies
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
-ynh_script_progression "Setting up source files..."
+ynh_script_progression --message="Setting up source files..."
 
 update_src_version() {
 	source ./upgrade.d/upgrade.last.sh
 	cp ../conf/$architecture.src.default ../conf/$architecture.src
-	ynh_replace_string "__VERSION__" "$gitlab_runner_version" "../conf/$architecture.src"
-	ynh_replace_string "__SOURCE_FILENAME__" "$gitlab_runner_filename" "../conf/$architecture.src"
+	ynh_replace_string --match_string="__VERSION__" --replace_string="$gitlab_runner_version" --target_file="../conf/$architecture.src"
+	ynh_replace_string --match_string="__SOURCE_FILENAME__" --replace_string="$gitlab_runner_filename" --target_file="../conf/$architecture.src"
 
 	if [ $architecture = "x86-64" ]; then
-		ynh_replace_string "__SHA256_SUM__" "$gitlab_runner_x86_64_source_sha256" "../conf/$architecture.src"
+		ynh_replace_string --match_string="__SHA256_SUM__" --replace_string="$gitlab_runner_x86_64_source_sha256" --target_file="../conf/$architecture.src"
 	elif [ $architecture = "i386" ]; then
-		ynh_replace_string "__SHA256_SUM__" "$gitlab_runner_i386_source_sha256" "../conf/$architecture.src"
+		ynh_replace_string --match_string="__SHA256_SUM__" --replace_string="$gitlab_runner_i386_source_sha256" --target_file="../conf/$architecture.src"
 	elif [ $architecture = "arm" ]; then
-		ynh_replace_string "__SHA256_SUM__" "$gitlab_runner_arm_source_sha256" "../conf/$architecture.src"
+		ynh_replace_string --match_string="__SHA256_SUM__" --replace_string="$gitlab_runner_arm_source_sha256" --target_file="../conf/$architecture.src"
 	fi
 }
 
@@ -120,7 +120,7 @@ update_src_version
 
 tempdir="$(mktemp -d)"
 
-ynh_setup_source $tempdir $architecture
+ynh_setup_source --dest_dir=$tempdir --source_id=$architecture
 
 dpkg -i $tempdir/$gitlab_runner_filename
 
@@ -129,7 +129,7 @@ dpkg -i $tempdir/$gitlab_runner_filename
 #=================================================
 # SETUP GITLAB RUNNER
 #=================================================
-ynh_script_progression "Configuring Gitlab Runner..."
+ynh_script_progression --message="Configuring Gitlab Runner..."
 
 # Can be registered several time, to do this give a list of gitlab_url, token and docker_image separated by a comma.
 split_char=","
@@ -174,4 +174,4 @@ yunohost service add $app
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression "Installation of $app completed" --last
+ynh_script_progression --message="Installation of $app completed" --last
