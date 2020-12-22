@@ -19,11 +19,11 @@ new_docker_image=${YNH_ACTION_DOCKER_IMAGE}
 
 app=${YNH_APP_INSTANCE_NAME:-$YNH_APP_ID}
 
-gitlab_url=$(ynh_app_setting_get $app gitlab_url)
-token=$(ynh_app_setting_get $app token)
-docker_image=$(ynh_app_setting_get $app docker_image)
-executor=$(ynh_app_setting_get $app executor)
-architecture=$(ynh_app_setting_get $app architecture)
+gitlab_url=$(ynh_app_setting_get --app=$app --key=gitlab_url)
+token=$(ynh_app_setting_get --app=$app --key=token)
+docker_image=$(ynh_app_setting_get --app=$app --key=docker_image)
+executor=$(ynh_app_setting_get --app=$app --key=executor)
+architecture=$(ynh_app_setting_get --app=$app --key=architecture)
 
 #=================================================
 # CHECK IF ARGUMENTS ARE CORRECT
@@ -47,7 +47,7 @@ fi
 #=================================================
 # BACKUP BEFORE ACTION THEN ACTIVE TRAP
 #=================================================
-ynh_script_progression "Backing up the app before action (may take a while)..."
+ynh_script_progression --message="Backing up the app before action (may take a while)..."
 
 # Backup the current version of the app
 ynh_backup_before_action
@@ -68,7 +68,7 @@ ynh_abort_if_errors
 #=================================================
 # REGISTER THE RUNNER
 #=================================================
-ynh_script_progression "Register Gitlab Runner..."
+ynh_script_progression --message="Register Gitlab Runner..."
 
 # Can be registered several time, to do this give a list of gitlab_url, token and docker_image separated by a comma.
 split_char=","
@@ -101,14 +101,14 @@ done
 #=================================================
 # STORE SETTINGS
 #=================================================
-ynh_script_progression "Storing settings..."
+ynh_script_progression --message="Storing settings..."
 
-ynh_app_setting_set $app gitlab_url $gitlab_url
-ynh_app_setting_set $app token $token
-ynh_app_setting_set $app docker_image $docker_image
+ynh_app_setting_set --app=$app --key=gitlab_url --value=$gitlab_url
+ynh_app_setting_set --app=$app --key=token --value=$token
+ynh_app_setting_set --app=$app --key=docker_image --value=$docker_image
 
 #=================================================
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression "Action of $app completed" --last
+ynh_script_progression --message="Action of $app completed" --last
