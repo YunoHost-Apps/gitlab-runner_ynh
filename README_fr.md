@@ -11,7 +11,7 @@ Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour
 ## Vue d'ensemble
 GitLab Runner est un outil d'intégration continue à utiliser avec une instance GitLab (YNH ou non).
 
-**Version incluse:** 13.7.0
+**Version incluse:** 13.11.0
 
 ## Captures d'écran
 
@@ -20,6 +20,10 @@ GitLab Runner est un outil d'intégration continue à utiliser avec une instance
 ## Configuration
 
 Comment configurer cette application: via le panneau d'administration de GitLab ou les paramettres "CI/CD" de votre projet.
+
+### Configuration système
+
+Lors du premier démarrage d'un Gitlab Runner, [un exécuteur](https://docs.gitlab.com/runner/executors/) doit être choisi (Lorsque l'instance Gitlab Runner s'enregistre auprès d'une instance Gitlab). Pour l'instant, cette application YunoHost ne supporte que l'[exécuteur `docker`](https://docs.gitlab.com/runner/executors/docker.html).
 
 ## Documentation
 
