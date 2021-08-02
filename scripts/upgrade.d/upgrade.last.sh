@@ -1,6 +1,6 @@
 gitlab_runner_version="13.11.0"
 
-gitlab_runner_x86_64_source_sha256="449af4853475f34508252469117e9bf61ed91b671d271becf377d9ff4735e512"
+gitlab_runner_x86_64_source_sha256="970426bec5aa8683345efb49a746cd45ccbd82541dca1d020a9f87075cc27159"
 
 gitlab_runner_i386_source_sha256="928e1afd5b2f81576382e579e4b10296038e7f94d9d634bb0f35248af36a1571"
 
