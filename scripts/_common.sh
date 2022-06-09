@@ -28,12 +28,12 @@ ynh_restore_actionbackup () {
 	if [ $NO_BACKUP_ACTION -eq "0" ]
 	then	
 		# Check if an existing backup can be found before removing and restoring the application.
-		if sudo yunohost backup list | grep -q $app_bck-pre-action$backup_number
+		if yunohost backup list | grep -q $app_bck-pre-action$backup_number
 		then
 			# Remove the application then restore it
-			sudo yunohost app remove $app
+			yunohost app remove $app
 			# Restore the backup
-			sudo yunohost backup restore $app_bck-pre-action$backup_number --apps $app --force --debug
+			yunohost backup restore $app_bck-pre-action$backup_number --apps $app --force --debug
 			ynh_die --message="The app was restored to the way it was before the failed action."
 		fi
 	else
@@ -63,7 +63,7 @@ ynh_backup_before_action () {
 	if [ $NO_BACKUP_ACTION -eq "0" ]
 	then
 		# Check if a backup already exists with the prefix 1
-		if sudo yunohost backup list | grep -q $app_bck-pre-action1
+		if yunohost backup list | grep -q $app_bck-pre-action1
 		then
 			# Prefix becomes 2 to preserve the previous backup
 			backup_number=2
@@ -71,14 +71,14 @@ ynh_backup_before_action () {
 		fi
 
 		# Create backup
-		sudo BACKUP_CORE_ONLY=1 yunohost backup create --apps $app --name $app_bck-pre-action$backup_number --debug
+		BACKUP_CORE_ONLY=1 yunohost backup create --apps $app --name $app_bck-pre-action$backup_number --debug
 		if [ "$?" -eq 0 ]
 		then
 			# If the backup succeeded, remove the previous backup
-			if sudo yunohost backup list | grep -q $app_bck-pre-action$old_backup_number
+			if yunohost backup list | grep -q $app_bck-pre-action$old_backup_number
 			then
 				# Remove the previous backup only if it exists
-				sudo yunohost backup delete $app_bck-pre-action$old_backup_number > /dev/null
+				yunohost backup delete $app_bck-pre-action$old_backup_number > /dev/null
 			fi
 		else
 			ynh_die --message="Backup failed, the action process was aborted."
