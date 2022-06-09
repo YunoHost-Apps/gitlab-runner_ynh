@@ -1,7 +1,7 @@
 ;; Test complet
 	; Manifest
 		gitlab_url="https://gitlab.com/"	(GITLAB_URL)
-		token="B4TvnFAH2DsAaxpp9Unc"	(TOKEN)
+		token="GR1348941_Rew7obt4p9jZyQUtHLx"	(TOKEN)
 		docker_image="alpine:latest"	(DOCKER_IMAGE)
 	; Checks
 		pkg_linter=1
