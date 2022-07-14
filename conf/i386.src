@@ -1,0 +1,6 @@
+SOURCE_URL=https://packages.gitlab.com/runner/gitlab-runner/packages/debian/buster/gitlab-runner_15.0.0_i386.deb/download.deb
+SOURCE_SUM=35bd675a1285f4ce4cd3c1494b59e0fba596ee395d9cf30c527922d969448263
+SOURCE_SUM_PRG=sha256sum
+SOURCE_FILENAME=gitlab-runner.deb
+SOURCE_EXTRACT=false
+SOURCE_FORMAT=deb
