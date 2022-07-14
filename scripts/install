@@ -14,7 +14,6 @@ source /usr/share/yunohost/helpers
 #=================================================
 
 ynh_clean_setup () {
-	### Remove this function if there's nothing to clean before calling the remove script.
 	true
 }
 # Exit if an error occurs during the execution of the script
@@ -83,17 +82,11 @@ ynh_app_setting_set --app=$app --key=config_path --value=$config_path
 #=================================================
 # STANDARD MODIFICATIONS
 #=================================================
-# ADD DOCKER REPO
-#=================================================
-ynh_script_progression --message="Adding a new repo..."
-
-ynh_install_extra_repo --repo="https://download.docker.com/linux/debian $(lsb_release -cs) stable" --key="https://download.docker.com/linux/debian/gpg" --name="${app}-docker"
-
-#=================================================
 # INSTALL DEPENDENCIES
 #=================================================
 ynh_script_progression --message="Installing dependencies..."
 
+ynh_install_extra_repo --repo="https://download.docker.com/linux/debian $(lsb_release -cs) stable" --key="https://download.docker.com/linux/debian/gpg" --name="${app}-docker"
 ynh_install_app_dependencies $pkg_dependencies
 
 #=================================================
@@ -165,8 +158,9 @@ ynh_store_file_checksum "$config_path/config.toml"
 #=================================================
 # GENERIC FINALIZATION
 #=================================================
-# ADVERTISE SERVICE IN ADMIN PANEL
+# INTEGRATE SERVICE IN YUNOHOST
 #=================================================
+ynh_script_progression --message="Integrating service in YunoHost..."
 
 yunohost service add $app
 
@@ -174,4 +168,4 @@ yunohost service add $app
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Installation of $app completed" --last
+ynh_script_progression --message="Installation of $app completed"
