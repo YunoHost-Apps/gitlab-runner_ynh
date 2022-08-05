@@ -1,6 +1,7 @@
-SOURCE_URL=https://packages.gitlab.com/runner/gitlab-runner/packages/debian/buster/gitlab-runner_15.0.0_armhf.deb/download.deb
-SOURCE_SUM=042ace4be975ecd916747d32e971c8356de90ef50eb2c75d372c5cd5371e2f74
+SOURCE_URL=https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v15.2.1/downloads/packages/deb/gitlab-runner_armhf.deb
+SOURCE_SUM=4d679120b7eef8ed5e497a93a90663b69beb6719709269366d3c6760a1e34cec
 SOURCE_SUM_PRG=sha256sum
+SOURCE_FORMAT=deb
+SOURCE_IN_SUBDIR=false
 SOURCE_FILENAME=gitlab-runner.deb
 SOURCE_EXTRACT=false
-SOURCE_FORMAT=deb
