@@ -51,7 +51,6 @@ ynh_app_setting_delete --app=$app --key=architecture
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
-ynh_script_progression --message="Upgrading source files..."
 
 if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
