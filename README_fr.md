@@ -18,7 +18,7 @@ Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour
 GitLab Runner est un outil d'intégration continue à utiliser avec une instance GitLab (YNH ou non).
 
 
-**Version incluse :** 15.0.0~ynh2
+**Version incluse :** 15.2.1~ynh1
 
 ## Captures d'écran
 
