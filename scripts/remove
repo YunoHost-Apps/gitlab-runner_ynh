@@ -65,4 +65,4 @@ ynh_secure_remove --file="$config_path"
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Removal of $app completed"
+ynh_script_progression --message="Removal of $app completed" --last
