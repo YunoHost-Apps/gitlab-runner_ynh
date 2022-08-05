@@ -1,9 +1,0 @@
-gitlab_runner_version="15.0.0"
-
-gitlab_runner_x86_64_source_sha256="0cdf0505fe72d46472f685736ace64fc5b5c7181fcb374d77b04e629bb6eeba5"
-
-gitlab_runner_i386_source_sha256="35bd675a1285f4ce4cd3c1494b59e0fba596ee395d9cf30c527922d969448263"
-
-gitlab_runner_arm_source_sha256="042ace4be975ecd916747d32e971c8356de90ef50eb2c75d372c5cd5371e2f74"
-
-gitlab_runner_filename="gitlab-runner-${gitlab_runner_version}.deb"

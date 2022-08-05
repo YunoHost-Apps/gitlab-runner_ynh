@@ -89,7 +89,7 @@ do
 		--executor "$executor" \
 		--docker-image "$docker_img" \
 		--description "Yunohost runner" \
-		--tag-list "$executor,$architecture" \
+		--tag-list "$executor,$YNH_ARCH" \
 		--run-untagged \
 		--locked="false"
 

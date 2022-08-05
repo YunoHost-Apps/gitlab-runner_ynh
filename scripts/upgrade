@@ -19,11 +19,11 @@ app=$YNH_APP_INSTANCE_NAME
 architecture=$(ynh_app_setting_get --app=$app --key=architecture)
 
 #=================================================
-# ENSURE DOWNWARD COMPATIBILITY
+# CHECK VERSION
 #=================================================
-ynh_script_progression --message="Ensuring downward compatibility..."
+ynh_script_progression --message="Checking version..."
 
-# NOTING TO DO HERE YET
+upgrade_type=$(ynh_check_app_version_changed)
 
 #=================================================
 # BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
@@ -33,7 +33,7 @@ ynh_script_progression --message="Backing up the app before upgrading (may take 
 # Backup the current version of the app
 ynh_backup_before_upgrade
 ynh_clean_setup () {
-	# restore it if the upgrade fails
+	# Restore it if the upgrade fails
 	ynh_restore_upgradebackup
 }
 # Exit if an error occurs during the execution of the script
@@ -42,43 +42,38 @@ ynh_abort_if_errors
 #=================================================
 # STANDARD UPGRADE STEPS
 #=================================================
+# ENSURE DOWNWARD COMPATIBILITY
+#=================================================
+ynh_script_progression --message="Ensuring downward compatibility..."
+
+ynh_app_setting_delete --app=$app --key=architecture
+
+#=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
-ynh_script_progression --message="Upgrading source files..."
 
-update_src_version() {
-	source $YNH_APP_BASEDIR/scripts/upgrade.d/upgrade.last.sh
-	cp $YNH_APP_BASEDIR/conf/$architecture.src.default $YNH_APP_BASEDIR/conf/$architecture.src
-	ynh_replace_string --match_string="__VERSION__" --replace_string="$gitlab_runner_version" --target_file="$YNH_APP_BASEDIR/conf/$architecture.src"
-	ynh_replace_string --match_string="__SOURCE_FILENAME__" --replace_string="$gitlab_runner_filename" --target_file="$YNH_APP_BASEDIR/conf/$architecture.src"
+if [ "$upgrade_type" == "UPGRADE_APP" ]
+then
+	ynh_script_progression --message="Upgrading source files..."
 
-	if [ $architecture = "x86-64" ]; then
-		ynh_replace_string --match_string="__SHA256_SUM__" --replace_string="$gitlab_runner_x86_64_source_sha256" --target_file="$YNH_APP_BASEDIR/conf/$architecture.src"
-	elif [ $architecture = "i386" ]; then
-		ynh_replace_string --match_string="__SHA256_SUM__" --replace_string="$gitlab_runner_i386_source_sha256" --target_file="$YNH_APP_BASEDIR/conf/$architecture.src"
-	elif [ $architecture = "arm" ]; then
-		ynh_replace_string --match_string="__SHA256_SUM__" --replace_string="$gitlab_runner_arm_source_sha256" --target_file="$YNH_APP_BASEDIR/conf/$architecture.src"
-	fi
-}
-
-update_src_version
-
-tempdir="$(mktemp -d)"
-
-ynh_setup_source --dest_dir=$tempdir --source_id=$architecture
-
-dpkg -i $tempdir/$gitlab_runner_filename
+	tempdir="$(mktemp -d)"
+	ynh_setup_source --dest_dir=$tempdir --source_id=$YNH_ARCH
+	dpkg -i $tempdir/gitlab-runner.deb
+	ynh_secure_remove --file="$tempdir"
+fi
 
 #=================================================
 # UPGRADE DEPENDENCIES
 #=================================================
 ynh_script_progression --message="Upgrading dependencies..."
 
+ynh_install_extra_repo --repo="https://download.docker.com/linux/debian $(lsb_release -cs) stable" --key="https://download.docker.com/linux/debian/gpg" --name="${app}-docker"
 ynh_install_app_dependencies $pkg_dependencies
 
 #=================================================
-# ADVERTISE SERVICE IN ADMIN PANEL
+# INTEGRATE SERVICE IN YUNOHOST
 #=================================================
+ynh_script_progression --message="Integrating service in YunoHost..."
 
 yunohost service add $app
 
