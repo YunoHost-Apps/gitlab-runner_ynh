@@ -12,7 +12,8 @@
         "license": "MIT",
         "website": "https://gitlab.com/gitlab-org/gitlab-runner",
         "admindoc": "https://docs.gitlab.com/runner/",
-        "code": "https://gitlab.com/gitlab-org/gitlab-runner"
+        "code": "https://gitlab.com/gitlab-org/gitlab-runner",
+        "cpe": "cpe:2.3:a:gitlab:runner"
     },
     "license": "MIT",
     "maintainer": {
