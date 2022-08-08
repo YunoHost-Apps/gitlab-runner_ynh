@@ -20,6 +20,7 @@ GitLab Runner is a continuous integration tool to use with a GitLab instance (YN
 
 **Shipped version:** 15.2.1~ynh1
 
+
 ## Screenshots
 
 ![Screenshot of GitLab Runner](./doc/screenshots/ci-cd-test-deploy-illustration_2x.png)
