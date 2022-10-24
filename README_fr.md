@@ -20,6 +20,7 @@ GitLab Runner est un outil d'intégration continue à utiliser avec une instance
 
 **Version incluse :** 15.5.0~ynh1
 
+
 ## Captures d'écran
 
 ![Capture d'écran de GitLab Runner](./doc/screenshots/ci-cd-test-deploy-illustration_2x.png)
