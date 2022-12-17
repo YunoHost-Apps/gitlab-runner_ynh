@@ -1,5 +1,5 @@
-SOURCE_URL=https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v15.6.0/downloads/packages/deb/gitlab-runner_amd64.deb
-SOURCE_SUM=5096d117024c9a62192ea89ee329e2b8e41c81223f055bfd84ea8603572445ca
+SOURCE_URL=https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v15.7.0/downloads/packages/deb/gitlab-runner_amd64.deb
+SOURCE_SUM=c64765b1deda27ae641f901cbbe7b54dc1e6e19051352a26a951203631e95f10
 SOURCE_SUM_PRG=sha256sum
 SOURCE_FORMAT=deb
 SOURCE_IN_SUBDIR=false
