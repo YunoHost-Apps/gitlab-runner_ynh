@@ -5,24 +5,24 @@ It shall NOT be edited by hand.
 
 # GitLab Runner pour YunoHost
 
-[![Niveau d'intégration](https://dash.yunohost.org/integration/gitlab-runner.svg)](https://dash.yunohost.org/appci/app/gitlab-runner) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/gitlab-runner.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/gitlab-runner.maintain.svg)  
+[![Niveau d’intégration](https://dash.yunohost.org/integration/gitlab-runner.svg)](https://dash.yunohost.org/appci/app/gitlab-runner) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/gitlab-runner.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/gitlab-runner.maintain.svg)  
 [![Installer GitLab Runner avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=gitlab-runner)
 
 *[Read this readme in english.](./README.md)*
 
-> *Ce package vous permet d'installer GitLab Runner rapidement et simplement sur un serveur YunoHost.
-Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l'installer et en profiter.*
+> *Ce package vous permet d’installer GitLab Runner rapidement et simplement sur un serveur YunoHost.
+Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l’installer et en profiter.*
 
-## Vue d'ensemble
+## Vue d’ensemble
 
 GitLab Runner est un outil d'intégration continue à utiliser avec une instance GitLab (YNH ou non).
 
 
-**Version incluse :** 15.7.1~ynh1
+**Version incluse :** 15.8.0~ynh1
 
-## Captures d'écran
+## Captures d’écran
 
-![Capture d'écran de GitLab Runner](./doc/screenshots/ci-cd-test-deploy-illustration_2x.png)
+![Capture d’écran de GitLab Runner](./doc/screenshots/ci-cd-test-deploy-illustration_2x.png)
 
 ## Avertissements / informations importantes
 
@@ -42,9 +42,9 @@ ou la section admin de l'instance GitLab à relier à ce runner.
 
 ## Documentations et ressources
 
-* Site officiel de l'app : <https://gitlab.com/gitlab-org/gitlab-runner>
-* Documentation officielle de l'admin : <https://docs.gitlab.com/runner/>
-* Dépôt de code officiel de l'app : <https://gitlab.com/gitlab-org/gitlab-runner>
+* Site officiel de l’app : <https://gitlab.com/gitlab-org/gitlab-runner>
+* Documentation officielle de l’admin : <https://docs.gitlab.com/runner/>
+* Dépôt de code officiel de l’app : <https://gitlab.com/gitlab-org/gitlab-runner>
 * Documentation YunoHost pour cette app : <https://yunohost.org/app_gitlab-runner>
 * Signaler un bug : <https://github.com/YunoHost-Apps/gitlab-runner_ynh/issues>
 
@@ -60,4 +60,4 @@ ou
 sudo yunohost app upgrade gitlab-runner -u https://github.com/YunoHost-Apps/gitlab-runner_ynh/tree/testing --debug
 ```
 
-**Plus d'infos sur le packaging d'applications :** <https://yunohost.org/packaging_apps>
+**Plus d’infos sur le packaging d’applications :** <https://yunohost.org/packaging_apps>
