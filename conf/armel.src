@@ -1,5 +1,5 @@
-SOURCE_URL=https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v15.8.0/downloads/packages/deb/gitlab-runner_armel.deb
-SOURCE_SUM=07f88c86696dce621f81586a88ad389b9983885ed7b29f3cbe69e90cdfa4890f
+SOURCE_URL=https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v15.8.1/downloads/packages/deb/gitlab-runner_armel.deb
+SOURCE_SUM=40b0edbe72e285042672e7f4e6164601beb7951fa92dd23610c0b9e8e41eded9
 SOURCE_SUM_PRG=sha256sum
 SOURCE_FORMAT=deb
 SOURCE_IN_SUBDIR=false
