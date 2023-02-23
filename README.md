@@ -6,6 +6,7 @@ It shall NOT be edited by hand.
 # GitLab Runner for YunoHost
 
 [![Integration level](https://dash.yunohost.org/integration/gitlab-runner.svg)](https://dash.yunohost.org/appci/app/gitlab-runner) ![Working status](https://ci-apps.yunohost.org/ci/badges/gitlab-runner.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/gitlab-runner.maintain.svg)
+
 [![Install GitLab Runner with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=gitlab-runner)
 
 *[Lire ce readme en français.](./README_fr.md)*
