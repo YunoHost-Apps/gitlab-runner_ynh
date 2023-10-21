@@ -1,5 +1,5 @@
-SOURCE_URL=https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v16.3.0/downloads/packages/deb/gitlab-runner_armhf.deb
-SOURCE_SUM=d54a18d5c6952f54dbf09fdf195ee9b1d3eeceaca0ccc4e9a37e6f96df0644a7
+SOURCE_URL=https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v16.5.0/downloads/packages/deb/gitlab-runner_armhf.deb
+SOURCE_SUM=ff51a7962851c1447c20d4bacc5b3ef2eef038045f9849fde089b4225e67d1ba
 SOURCE_SUM_PRG=sha256sum
 SOURCE_FORMAT=deb
 SOURCE_IN_SUBDIR=false
