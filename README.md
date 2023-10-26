@@ -45,6 +45,7 @@ Running a Gitlab Runner mandates to choose [an executor](https://docs.gitlab.com
 * Official app website: <https://gitlab.com/gitlab-org/gitlab-runner>
 * Official admin documentation: <https://docs.gitlab.com/runner/>
 * Upstream app code repository: <https://gitlab.com/gitlab-org/gitlab-runner>
+* YunoHost Store: <https://apps.yunohost.org/app/gitlab-runner>
 * Report a bug: <https://github.com/YunoHost-Apps/gitlab-runner_ynh/issues>
 
 ## Developer info

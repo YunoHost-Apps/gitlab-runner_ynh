@@ -46,6 +46,7 @@ ou la section admin de l'instance GitLab à relier à ce runner.
 * Site officiel de l’app : <https://gitlab.com/gitlab-org/gitlab-runner>
 * Documentation officielle de l’admin : <https://docs.gitlab.com/runner/>
 * Dépôt de code officiel de l’app : <https://gitlab.com/gitlab-org/gitlab-runner>
+* YunoHost Store: <https://apps.yunohost.org/app/gitlab-runner>
 * Signaler un bug : <https://github.com/YunoHost-Apps/gitlab-runner_ynh/issues>
 
 ## Informations pour les développeurs
