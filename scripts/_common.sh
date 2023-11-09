@@ -5,7 +5,7 @@
 #=================================================
 
 # dependencies used by the app
-pkg_dependencies="ca-certificates git curl tar docker-ce docker-ce-cli containerd.io"
+#REMOVEME? pkg_dependencies="ca-certificates git curl tar docker-ce docker-ce-cli containerd.io"
 
 #=================================================
 # PERSONAL HELPERS
@@ -15,10 +15,10 @@ pkg_dependencies="ca-certificates git curl tar docker-ce docker-ce-cli container
 #
 # usage:
 # ynh_backup_before_action
-# ynh_clean_setup () {
+#REMOVEME? # ynh_clean_setup () {
 # 	ynh_restore_actionbackup
 # }
-# ynh_abort_if_errors
+#REMOVEME? # ynh_abort_if_errors
 ynh_restore_actionbackup () {
 	echo "Action failed." >&2
 	local app_bck=${app//_/-}	# Replace all '_' by '-'
@@ -45,10 +45,10 @@ ynh_restore_actionbackup () {
 #
 # usage:
 # ynh_backup_before_action
-# ynh_clean_setup () {
+#REMOVEME? # ynh_clean_setup () {
 # 	ynh_restore_actionbackup
 # }
-# ynh_abort_if_errors
+#REMOVEME? # ynh_abort_if_errors
 ynh_backup_before_action () {
 	if [ ! -e "/etc/yunohost/apps/$app/scripts/backup" ]
 	then

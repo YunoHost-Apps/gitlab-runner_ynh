@@ -13,26 +13,26 @@ source /usr/share/yunohost/helpers
 # MANAGE SCRIPT FAILURE
 #=================================================
 
-ynh_clean_setup () {
+#REMOVEME? ynh_clean_setup () {
 	true
 }
 # Exit if an error occurs during the execution of the script
-ynh_abort_if_errors
+#REMOVEME? ynh_abort_if_errors
 
 #=================================================
 # RETRIEVE ARGUMENTS FROM THE MANIFEST
 #=================================================
 
-gitlab_url=$YNH_APP_ARG_GITLAB_URL
-token=$YNH_APP_ARG_TOKEN
-docker_image=$YNH_APP_ARG_DOCKER_IMAGE
+#REMOVEME? gitlab_url=$YNH_APP_ARG_GITLAB_URL
+#REMOVEME? token=$YNH_APP_ARG_TOKEN
+#REMOVEME? docker_image=$YNH_APP_ARG_DOCKER_IMAGE
 
-app=$YNH_APP_INSTANCE_NAME
+#REMOVEME? app=$YNH_APP_INSTANCE_NAME
 
 #=================================================
 # CHECK IF THE APP CAN BE INSTALLED WITH THESE ARGS
 #=================================================
-ynh_script_progression --message="Validating installation parameters..."
+#REMOVEME? ynh_script_progression --message="Validating installation parameters..."
 
 config_path=/etc/$app
 test ! -e "$config_path" || ynh_die "This path already contains a folder"
@@ -58,23 +58,23 @@ fi
 #=================================================
 # STORE SETTINGS FROM MANIFEST
 #=================================================
-ynh_script_progression --message="Storing installation settings..."
+#REMOVEME? ynh_script_progression --message="Storing installation settings..."
 
 ynh_app_setting_set --app=$app --key=gitlab_url --value=$gitlab_url
 ynh_app_setting_set --app=$app --key=token --value=$token
 ynh_app_setting_set --app=$app --key=executor --value=$executor
 ynh_app_setting_set --app=$app --key=docker_image --value=$docker_image
-ynh_app_setting_set --app=$app --key=config_path --value=$config_path
+#REMOVEME? ynh_app_setting_set --app=$app --key=config_path --value=$config_path
 
 #=================================================
 # STANDARD MODIFICATIONS
 #=================================================
 # INSTALL DEPENDENCIES
 #=================================================
-ynh_script_progression --message="Installing dependencies..."
+#REMOVEME? ynh_script_progression --message="Installing dependencies..."
 
 ynh_install_extra_repo --repo="https://download.docker.com/linux/debian $(lsb_release -cs) stable" --key="https://download.docker.com/linux/debian/gpg" --name="${app}-docker"
-ynh_install_app_dependencies $pkg_dependencies
+#REMOVEME? ynh_install_app_dependencies $pkg_dependencies
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
