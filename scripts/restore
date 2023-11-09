@@ -11,47 +11,12 @@ source ../settings/scripts/_common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
-# MANAGE SCRIPT FAILURE
-#=================================================
-
-#REMOVEME? ynh_clean_setup () {
-	true
-}
-# Exit if an error occurs during the execution of the script
-#REMOVEME? ynh_abort_if_errors
-
-#=================================================
-# LOAD SETTINGS
-#=================================================
-#REMOVEME? ynh_script_progression --message="Loading installation settings..."
-
-#REMOVEME? app=$YNH_APP_INSTANCE_NAME
-
-#REMOVEME? config_path=$(ynh_app_setting_get --app=$app --key=config_path)
-#REMOVEME? architecture=$(ynh_app_setting_get --app=$app --key=architecture)
-#REMOVEME? gitlab_url=$(ynh_app_setting_get --app=$app --key=gitlab_url)
-#REMOVEME? token=$(ynh_app_setting_get --app=$app --key=token)
-#REMOVEME? executor=$(ynh_app_setting_get --app=$app --key=executor)
-#REMOVEME? docker_image=$(ynh_app_setting_get --app=$app --key=docker_image)
-
-#=================================================
 # CHECK IF THE APP CAN BE RESTORED
 #=================================================
-#REMOVEME? ynh_script_progression --message="Validating restoration parameters..."
+ynh_script_progression --message="Validating restoration parameters..."
 
 test ! -d $config_path \
 	|| ynh_die --message="There is already a directory: $config_path "
-
-#=================================================
-# STANDARD RESTORATION STEPS
-#=================================================
-# REINSTALL DEPENDENCIES
-#=================================================
-#REMOVEME? ynh_script_progression --message="Reinstalling dependencies..."
-
-# Define and install dependencies
-ynh_install_extra_repo --repo="https://download.docker.com/linux/debian $(lsb_release -cs) stable" --key="https://download.docker.com/linux/debian/gpg" --name="${app}-docker"
-#REMOVEME? ynh_install_app_dependencies $pkg_dependencies
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE

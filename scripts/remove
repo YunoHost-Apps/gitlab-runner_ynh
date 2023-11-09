@@ -10,15 +10,6 @@ source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
-# LOAD SETTINGS
-#=================================================
-#REMOVEME? ynh_script_progression --message="Loading installation settings..."
-
-#REMOVEME? app=$YNH_APP_INSTANCE_NAME
-
-#REMOVEME? config_path=$(ynh_app_setting_get --app=$app --key=config_path)
-
-#=================================================
 # STANDARD REMOVE
 #=================================================
 # REMOVE SERVICE INTEGRATION IN YUNOHOST
@@ -44,15 +35,6 @@ ynh_exec_warn_less $app unregister --all-runners
 ynh_script_progression --message="Removing Gitlab Runner"
 
 dpkg --remove $app
-
-#=================================================
-# REMOVE DEPENDENCIES
-#=================================================
-#REMOVEME? ynh_script_progression --message="Removing dependencies..."
-
-# Remove metapackage and its dependencies
-#REMOVEME? ynh_remove_app_dependencies
-ynh_remove_extra_repo --name="${app}-docker"
 
 #=================================================
 # REMOVE VARIOUS FILES
