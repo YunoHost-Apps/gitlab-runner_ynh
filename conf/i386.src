@@ -1,5 +1,5 @@
-SOURCE_URL=https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v16.5.0/downloads/packages/deb/gitlab-runner_i386.deb
-SOURCE_SUM=271b0437223eba292a79b4c427bdbca3c5edd578292149526b2bec5eb27d8c57
+SOURCE_URL=https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v16.6.0/downloads/packages/deb/gitlab-runner_i386.deb
+SOURCE_SUM=476eb1a58f92a9f8badd15f514821b5b17c2420b2129650fa8ce1158dcdff815
 SOURCE_SUM_PRG=sha256sum
 SOURCE_FORMAT=deb
 SOURCE_IN_SUBDIR=false
