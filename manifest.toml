@@ -2,10 +2,10 @@ packaging_format = 2
 
 id = "gitlab-runner"
 name = "GitLab Runner"
-description.en = "Continuous integration tool to use with a GitLab instance (YNH or not)."
-description.fr = "Outil d'intégration continue à utiliser avec une instance GitLab (YNH ou non)."
+description.en = "Continuous integration tool to use with a GitLab instance (YNH or not)"
+description.fr = "Outil d'intégration continue à utiliser avec une instance GitLab (YNH ou non)"
 
-version = "16.5.0~ynh1"
+version = "16.6.0~ynh1"
 
 maintainers = ["kay0u"]
 
@@ -55,14 +55,14 @@ ram.runtime = "50M"
 [resources]
         [resources.sources.main]
         rename = "gitlab-runner.deb"
-        arm64.url = "https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v16.5.0/downloads/packages/deb/gitlab-runner_aarch64.deb"
-        arm64.sha256 = "9747f0f82ec099ce34b1b352a9b09fbe237ed710f22c273fe7c08b1a80494b33"
-        amd64.url = "https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v16.5.0/downloads/packages/deb/gitlab-runner_amd64.deb"
-        amd64.sha256 = "7b619273ef5b845407dd45a84c7a1e07442493f2d140c94720f6c47c3a403b48"
-        armhf.url = "https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v16.5.0/downloads/packages/deb/gitlab-runner_armhf.deb"
-        armhf.sha256 = "ff51a7962851c1447c20d4bacc5b3ef2eef038045f9849fde089b4225e67d1ba"
-        i386.url = "https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v16.5.0/downloads/packages/deb/gitlab-runner_i386.deb"
-        i386.sha256 = "271b0437223eba292a79b4c427bdbca3c5edd578292149526b2bec5eb27d8c57"
+        arm64.url = "https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v16.6.0/downloads/packages/deb/gitlab-runner_arm64.deb"
+        arm64.sha256 = "4cad21c231e4d52ad4d31287211bd63bc10238081de82a01afa174d3949b2859"
+        amd64.url = "https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v16.6.0/downloads/packages/deb/gitlab-runner_amd64.deb"
+        amd64.sha256 = "b052147d1ded0cba4a75a8beecd2592f6c940b1b7036ff0ffb463e3114f16e9b"
+        armhf.url = "https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v16.6.0/downloads/packages/deb/gitlab-runner_armhf.deb"
+        armhf.sha256 = "efa6024bece3c353382898350c5ac77e1f51c7261d056fbde13785aee4aa6527"
+        i386.url = "https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v16.6.0/downloads/packages/deb/gitlab-runner_i386.deb"
+        i386.sha256 = "476eb1a58f92a9f8badd15f514821b5b17c2420b2129650fa8ce1158dcdff815"
 
 
     [resources.system_user]
