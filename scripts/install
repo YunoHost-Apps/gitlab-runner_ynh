@@ -12,7 +12,7 @@ source /usr/share/yunohost/helpers
 #=================================================
 # CHECK IF THE APP CAN BE INSTALLED WITH THESE ARGS
 #=================================================
-#REMOVEME? ynh_script_progression --message="Validating installation parameters..."
+ynh_script_progression --message="Validating installation parameters..."
 
 config_path=/etc/$app
 test ! -e "$config_path" || ynh_die "This path already contains a folder"
@@ -48,7 +48,7 @@ ynh_app_setting_set --app=$app --key=executor --value=$executor
 ynh_script_progression --message="Setting up source files..."
 
 tempdir="$(mktemp -d)"
-ynh_setup_source --dest_dir=$tempdir --source_id=$YNH_ARCH
+ynh_setup_source --dest_dir=$tempdir
 dpkg -i $tempdir/gitlab-runner.deb
 ynh_secure_remove --file="$tempdir"
 
