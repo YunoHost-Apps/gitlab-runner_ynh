@@ -19,8 +19,11 @@ code = "https://gitlab.com/gitlab-org/gitlab-runner"
 yunohost = ">= 11.2"
 architectures = ["amd64", "i386", "armhf", "arm64"]
 multi_instance = false
+
 ldap = "not_relevant"
+
 sso = "not_relevant"
+
 disk = "50M"
 ram.build = "50M"
 ram.runtime = "50M"
@@ -57,8 +60,6 @@ ram.runtime = "50M"
         arm64.sha256 = "9747f0f82ec099ce34b1b352a9b09fbe237ed710f22c273fe7c08b1a80494b33"
         amd64.url = "https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v16.5.0/downloads/packages/deb/gitlab-runner_amd64.deb"
         amd64.sha256 = "7b619273ef5b845407dd45a84c7a1e07442493f2d140c94720f6c47c3a403b48"
-        armel.url = "https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v16.5.0/downloads/packages/deb/gitlab-runner_armel.deb"
-        armel.sha256 = "8d78e75bf8b75b64d86aa5c05df47b0fc7941a7c953a2cf55a487d8c19ca1e10"
         armhf.url = "https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v16.5.0/downloads/packages/deb/gitlab-runner_armhf.deb"
         armhf.sha256 = "ff51a7962851c1447c20d4bacc5b3ef2eef038045f9849fde089b4225e67d1ba"
         i386.url = "https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v16.5.0/downloads/packages/deb/gitlab-runner_i386.deb"
@@ -71,6 +72,7 @@ ram.runtime = "50M"
 
     [resources.permissions]
     main.url = "/"
+    main.allowed = "visitors"
     
     [resources.apt]
     packages = "ca-certificates, git, curl, tar"
