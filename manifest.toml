@@ -54,7 +54,6 @@ ram.runtime = "50M"
 
 [resources]
         [resources.sources.main]
-        format = "deb"
         rename = "gitlab-runner.deb"
         arm64.url = "https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v16.5.0/downloads/packages/deb/gitlab-runner_aarch64.deb"
         arm64.sha256 = "9747f0f82ec099ce34b1b352a9b09fbe237ed710f22c273fe7c08b1a80494b33"
