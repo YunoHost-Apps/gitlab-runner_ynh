@@ -57,7 +57,7 @@ ynh_secure_remove --file="$tempdir"
 #=================================================
 # SETUP GITLAB RUNNER
 #=================================================
-ynh_script_progression --message="Configuring Gitlab Runner..."
+ynh_script_progression --message="Configuring GitLab Runner..."
 
 # Can be registered several time, to do this give a list of gitlab_url, token and docker_image separated by a comma.
 split_char=","
