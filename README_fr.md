@@ -19,7 +19,7 @@ Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) po
 GitLab Runner est un outil d'intégration continue à utiliser avec une instance GitLab (YNH ou non).
 
 
-**Version incluse :** 16.5.0~ynh1
+**Version incluse :** 16.6.1~ynh1
 
 ## Captures d’écran
 
@@ -46,6 +46,7 @@ ou la section admin de l'instance GitLab à relier à ce runner.
 * Site officiel de l’app : <https://gitlab.com/gitlab-org/gitlab-runner>
 * Documentation officielle de l’admin : <https://docs.gitlab.com/runner/>
 * Dépôt de code officiel de l’app : <https://gitlab.com/gitlab-org/gitlab-runner>
+* YunoHost Store: <https://apps.yunohost.org/app/gitlab-runner>
 * Signaler un bug : <https://github.com/YunoHost-Apps/gitlab-runner_ynh/issues>
 
 ## Informations pour les développeurs
