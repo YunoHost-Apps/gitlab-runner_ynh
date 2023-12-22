@@ -15,8 +15,8 @@ source /usr/share/yunohost/helpers
 #=================================================
 ynh_script_progression --message="Validating restoration parameters..."
 
-test ! -d $config_path \
-	|| ynh_die --message="There is already a directory: $config_path "
+test ! -d /etc/$app \
+	|| ynh_die --message="There is already a directory: /etc/$app "
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -64,7 +64,7 @@ done
 #=================================================
 
 # Calculate and store the config file checksum into the app settings
-ynh_store_file_checksum "$config_path/config.toml"
+ynh_store_file_checksum "/etc/$app/config.toml"
 
 #=================================================
 # INTEGRATE SERVICE IN YUNOHOST

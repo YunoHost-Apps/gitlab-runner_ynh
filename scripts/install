@@ -14,8 +14,7 @@ source /usr/share/yunohost/helpers
 #=================================================
 ynh_script_progression --message="Validating installation parameters..."
 
-config_path=/etc/$app
-test ! -e "$config_path" || ynh_die "This path already contains a folder"
+test ! -e "/etc/$app" || ynh_die "This path already contains a folder"
 
 # By default, the runner will use docker to run your builds. PR are welcomes to implement more executors
 executor="docker"
@@ -88,7 +87,7 @@ done
 #=================================================
 
 # Calculate and store the config file checksum into the app settings
-ynh_store_file_checksum "$config_path/config.toml"
+ynh_store_file_checksum "/etc/$app/config.toml"
 
 #=================================================
 # GENERIC FINALIZATION

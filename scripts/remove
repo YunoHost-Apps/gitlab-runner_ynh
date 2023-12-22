@@ -22,24 +22,9 @@ then
 	yunohost service remove $app
 fi
 
-#=================================================
-# UNREGISTER ALL RUNNERS
-#=================================================
-ynh_script_progression --message="Unregistering all runners..."
-
 ynh_exec_warn_less $app unregister --all-runners
 
-#=================================================
-# REMOVE GITLAB RUNNER
-#=================================================
-ynh_script_progression --message="Removing Gitlab Runner"
-
 dpkg --remove $app
-
-#=================================================
-# REMOVE VARIOUS FILES
-#=================================================
-ynh_script_progression --message="Removing various files..."
 
 ynh_secure_remove --file="/etc/$app"
 
