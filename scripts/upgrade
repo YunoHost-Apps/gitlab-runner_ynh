@@ -20,7 +20,7 @@ upgrade_type=$(ynh_check_app_version_changed)
 #=================================================
 # ENSURE DOWNWARD COMPATIBILITY
 #=================================================
-ynh_script_progression --message="Ensuring downward compatibility..."
+ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
 
 ynh_app_setting_delete --app=$app --key=$YNH_ARCH
 
@@ -30,10 +30,10 @@ ynh_app_setting_delete --app=$app --key=$YNH_ARCH
 
 if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
-	ynh_script_progression --message="Upgrading source files..."
+	ynh_script_progression --message="Upgrading source files..." --weight=1
 
 	tempdir="$(mktemp -d)"
-	ynh_setup_source --dest_dir=$tempdir --source_id=$YNH_ARCH
+	ynh_setup_source --dest_dir=$tempdir
 	dpkg -i $tempdir/gitlab-runner.deb
 	ynh_secure_remove --file="$tempdir"
 fi
@@ -41,7 +41,7 @@ fi
 #=================================================
 # INTEGRATE SERVICE IN YUNOHOST
 #=================================================
-ynh_script_progression --message="Integrating service in YunoHost..."
+ynh_script_progression --message="Integrating service in YunoHost..." --weight=1
 
 yunohost service add $app
 
