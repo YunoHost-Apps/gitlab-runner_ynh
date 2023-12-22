@@ -68,10 +68,6 @@ ram.runtime = "50M"
     [resources.system_user]
 
     [resources.install_dir]
-
-    #[resources.permissions]
-    #main.url = "/"
-    #main.allowed = "visitors"
     
     [resources.apt]
     packages = "ca-certificates, git, curl, tar"
