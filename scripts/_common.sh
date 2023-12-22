@@ -12,13 +12,6 @@
 #=================================================
 
 # Restore a previous backup if the action process failed
-#
-# usage:
-# ynh_backup_before_action
-#REMOVEME? # ynh_clean_setup () {
-# 	ynh_restore_actionbackup
-# }
-#REMOVEME? # ynh_abort_if_errors
 ynh_restore_actionbackup () {
 	echo "Action failed." >&2
 	local app_bck=${app//_/-}	# Replace all '_' by '-'
@@ -42,13 +35,6 @@ ynh_restore_actionbackup () {
 }
 
 # Make a backup in case of failed action
-#
-# usage:
-# ynh_backup_before_action
-#REMOVEME? # ynh_clean_setup () {
-# 	ynh_restore_actionbackup
-# }
-#REMOVEME? # ynh_abort_if_errors
 ynh_backup_before_action () {
 	if [ ! -e "/etc/yunohost/apps/$app/scripts/backup" ]
 	then
