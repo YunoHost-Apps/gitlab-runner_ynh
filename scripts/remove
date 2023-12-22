@@ -41,7 +41,7 @@ dpkg --remove $app
 #=================================================
 ynh_script_progression --message="Removing various files..."
 
-ynh_secure_remove --file="$config_path"
+ynh_secure_remove --file="/etc/$app"
 
 #=================================================
 # END OF SCRIPT
