@@ -1,3 +1,5 @@
+#:schema https://raw.githubusercontent.com/YunoHost/apps/master/schemas/manifest.v2.schema.json
+
 packaging_format = 2
 
 id = "gitlab-runner"
@@ -53,24 +55,35 @@ ram.runtime = "50M"
     default = "alpine:latest"
 
 [resources]
-        [resources.sources.main]
-        rename = "gitlab-runner.deb"
-        arm64.url = "https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v16.6.0/downloads/packages/deb/gitlab-runner_arm64.deb"
-        arm64.sha256 = "4cad21c231e4d52ad4d31287211bd63bc10238081de82a01afa174d3949b2859"
-        amd64.url = "https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v16.6.0/downloads/packages/deb/gitlab-runner_amd64.deb"
-        amd64.sha256 = "b052147d1ded0cba4a75a8beecd2592f6c940b1b7036ff0ffb463e3114f16e9b"
-        armhf.url = "https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v16.6.0/downloads/packages/deb/gitlab-runner_armhf.deb"
-        armhf.sha256 = "efa6024bece3c353382898350c5ac77e1f51c7261d056fbde13785aee4aa6527"
-        i386.url = "https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v16.6.0/downloads/packages/deb/gitlab-runner_i386.deb"
-        i386.sha256 = "476eb1a58f92a9f8badd15f514821b5b17c2420b2129650fa8ce1158dcdff815"
+    [resources.sources.main]
+    rename = "gitlab-runner.deb"
+    amd64.url = "https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v16.6.0/downloads/packages/deb/gitlab-runner_amd64.deb"
+    amd64.sha256 = "b052147d1ded0cba4a75a8beecd2592f6c940b1b7036ff0ffb463e3114f16e9b"
+    i386.url = "https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v16.6.0/downloads/packages/deb/gitlab-runner_i386.deb"
+    i386.sha256 = "476eb1a58f92a9f8badd15f514821b5b17c2420b2129650fa8ce1158dcdff815"
+    arm64.url = "https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v16.6.0/downloads/packages/deb/gitlab-runner_arm64.deb"
+    arm64.sha256 = "4cad21c231e4d52ad4d31287211bd63bc10238081de82a01afa174d3949b2859"
+    armhf.url = "https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v16.6.0/downloads/packages/deb/gitlab-runner_armhf.deb"
+    armhf.sha256 = "efa6024bece3c353382898350c5ac77e1f51c7261d056fbde13785aee4aa6527"
 
+    autoupdate.upstream = "https://gitlab.com/gitlab-org/gitlab-runner"
+    autoupdate.strategy = "latest_gitlab_release"
+    autoupdate.asset.amd64 = "package: DEB amd64"
+    autoupdate.asset.i386 = "package: DEB i386"
+    autoupdate.asset.arm64 = "package: DEB arm64"
+    autoupdate.asset.armhf = "package: DEB armhf"
 
     [resources.system_user]
 
     [resources.install_dir]
-    
+
     [resources.apt]
-    packages = "ca-certificates, git, curl, tar"
+    packages = [
+        "ca-certificates",
+        "git",
+        "curl",
+        "tar",
+    ]
 
     extras.docker.repo = "https://download.docker.com/linux/debian bullseye stable"
     extras.docker.key = "https://download.docker.com/linux/debian/gpg"
