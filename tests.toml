@@ -18,3 +18,5 @@ test_format = 1.0
     args.gitlab_url = "https://gitlab.com/"
     args.token = "GR1348941_Rew7obt4p9jZyQUtHLx"
     args.docker_image = "alpine:latest"
+
+    test_upgrade_from.84ce8e1.name = "Last packaging v1 version"
