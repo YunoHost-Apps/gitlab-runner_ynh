@@ -1,7 +1,0 @@
-SOURCE_URL=https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v16.7.0/downloads/packages/deb/gitlab-runner_arm64.deb
-SOURCE_SUM=cae209098fabbc9f13e7af9a133a5dc3e3d5b0083863753cb12c4e6c0276c491
-SOURCE_SUM_PRG=sha256sum
-SOURCE_FORMAT=deb
-SOURCE_IN_SUBDIR=false
-SOURCE_FILENAME=gitlab-runner.deb
-SOURCE_EXTRACT=false

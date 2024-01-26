@@ -68,7 +68,7 @@ ynh_abort_if_errors
 #=================================================
 # REGISTER THE RUNNER
 #=================================================
-ynh_script_progression --message="Register Gitlab Runner..."
+ynh_script_progression --message="Register GitLab Runner..."
 
 # Can be registered several time, to do this give a list of gitlab_url, token and docker_image separated by a comma.
 split_char=","

@@ -11,47 +11,12 @@ source ../settings/scripts/_common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
-# MANAGE SCRIPT FAILURE
-#=================================================
-
-ynh_clean_setup () {
-	true
-}
-# Exit if an error occurs during the execution of the script
-ynh_abort_if_errors
-
-#=================================================
-# LOAD SETTINGS
-#=================================================
-ynh_script_progression --message="Loading installation settings..."
-
-app=$YNH_APP_INSTANCE_NAME
-
-config_path=$(ynh_app_setting_get --app=$app --key=config_path)
-architecture=$(ynh_app_setting_get --app=$app --key=architecture)
-gitlab_url=$(ynh_app_setting_get --app=$app --key=gitlab_url)
-token=$(ynh_app_setting_get --app=$app --key=token)
-executor=$(ynh_app_setting_get --app=$app --key=executor)
-docker_image=$(ynh_app_setting_get --app=$app --key=docker_image)
-
-#=================================================
 # CHECK IF THE APP CAN BE RESTORED
 #=================================================
 ynh_script_progression --message="Validating restoration parameters..."
 
-test ! -d $config_path \
-	|| ynh_die --message="There is already a directory: $config_path "
-
-#=================================================
-# STANDARD RESTORATION STEPS
-#=================================================
-# REINSTALL DEPENDENCIES
-#=================================================
-ynh_script_progression --message="Reinstalling dependencies..."
-
-# Define and install dependencies
-ynh_install_extra_repo --repo="https://download.docker.com/linux/debian $(lsb_release -cs) stable" --key="https://download.docker.com/linux/debian/gpg" --name="${app}-docker"
-ynh_install_app_dependencies $pkg_dependencies
+test ! -d /etc/$app \
+	|| ynh_die --message="There is already a directory: /etc/$app "
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -59,7 +24,7 @@ ynh_install_app_dependencies $pkg_dependencies
 ynh_script_progression --message="Reinstalling GitLab Runner..."
 
 tempdir="$(mktemp -d)"
-ynh_setup_source --dest_dir=$tempdir --source_id=$YNH_ARCH
+ynh_setup_source --dest_dir=$tempdir
 dpkg -i $tempdir/gitlab-runner.deb
 ynh_secure_remove --file="$tempdir"
 
@@ -99,7 +64,7 @@ done
 #=================================================
 
 # Calculate and store the config file checksum into the app settings
-ynh_store_file_checksum "$config_path/config.toml"
+ynh_store_file_checksum "/etc/$app/config.toml"
 
 #=================================================
 # INTEGRATE SERVICE IN YUNOHOST
