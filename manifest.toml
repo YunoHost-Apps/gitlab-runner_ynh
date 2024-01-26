@@ -1,0 +1,90 @@
+#:schema https://raw.githubusercontent.com/YunoHost/apps/master/schemas/manifest.v2.schema.json
+
+packaging_format = 2
+
+id = "gitlab-runner"
+name = "GitLab Runner"
+description.en = "Continuous integration tool to use with a GitLab instance (YNH or not)"
+description.fr = "Outil d'intégration continue à utiliser avec une instance GitLab (YNH ou non)"
+
+version = "16.7.0~ynh2"
+
+maintainers = ["kay0u"]
+
+[upstream]
+license = "MIT"
+website = "https://gitlab.com/gitlab-org/gitlab-runner"
+admindoc = "https://docs.gitlab.com/runner/"
+code = "https://gitlab.com/gitlab-org/gitlab-runner"
+
+[integration]
+yunohost = ">= 11.2"
+architectures = ["amd64", "i386", "armhf", "arm64"]
+multi_instance = false
+
+ldap = "not_relevant"
+
+sso = "not_relevant"
+
+disk = "50M"
+ram.build = "50M"
+ram.runtime = "50M"
+
+[install]
+    [install.gitlab_url]
+    ask.en = "Please enter the GitLab-CI coordinator URL"
+    ask.fr = "Veuillez entrer l'URL du coordinateur GitLab-CI"
+    help.en = "This URL can be retrieved at this location: GitLab Project->Settings->Runner or: Admin Area->Overview->Runners"
+    help.fr = "Cet URL peut être récupéré à cet emplacement : Projet GitLab->Settings->Runner ou : Admin Area->Overview->Runners"
+    type = "string"
+    example = "https://gitlab.com/"
+
+    [install.token]
+    ask.en = "Please enter the GitLab-CI token for this Runner"
+    ask.fr = "Veuillez entrer le jeton GitLab-CI pour ce Runner"
+    help.en = "This token can be retrieved at this location: GitLab Project->Settings->Runner or: Admin Area->Overview->Runners"
+    help.fr = "Ce token peut être récupéré à cet emplacement : Projet GitLab->Settings->Runner ou : Admin Area->Overview->Runners"
+    type = "string"
+    example = "xxx"
+
+    [install.docker_image]
+    ask.en = "Please enter the Docker image"
+    ask.fr = "Veuillez entrer l'image du Docker"
+    type = "string"
+    example = "ruby:2.1"
+    default = "alpine:latest"
+
+[resources]
+    [resources.sources.main]
+    rename = "gitlab-runner.deb"
+    amd64.url = "https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v16.7.0/downloads/packages/deb/gitlab-runner_amd64.deb"
+    amd64.sha256 = "3087018f3bfa70dbd98ba29e80e32dab692a088e3266652a61280e337bf5e865"
+    i386.url = "https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v16.7.0/downloads/packages/deb/gitlab-runner_i386.deb"
+    i386.sha256 = "6e2906be6bb01db1f79aaa32d74387a2e59c25437e7a94f3e038d5a63aa113a6"
+    arm64.url = "https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v16.7.0/downloads/packages/deb/gitlab-runner_arm64.deb"
+    arm64.sha256 = "cae209098fabbc9f13e7af9a133a5dc3e3d5b0083863753cb12c4e6c0276c491"
+    armhf.url = "https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v16.7.0/downloads/packages/deb/gitlab-runner_armhf.deb"
+    armhf.sha256 = "8ad7cc4cd25911d44bdcab27397868c8bf9226046f9665428599b4eef529e199"
+
+    autoupdate.upstream = "https://gitlab.com/gitlab-org/gitlab-runner"
+    autoupdate.strategy = "latest_gitlab_release"
+    autoupdate.asset.amd64 = "package: DEB amd64"
+    autoupdate.asset.i386 = "package: DEB i386"
+    autoupdate.asset.arm64 = "package: DEB arm64"
+    autoupdate.asset.armhf = "package: DEB armhf"
+
+    [resources.system_user]
+
+    [resources.install_dir]
+
+    [resources.apt]
+    packages = [
+        "ca-certificates",
+        "git",
+        "curl",
+        "tar",
+    ]
+
+    extras.docker.repo = "https://download.docker.com/linux/debian bullseye stable"
+    extras.docker.key = "https://download.docker.com/linux/debian/gpg"
+    extras.docker.packages = "docker-ce, docker-ce-cli, containerd.io"
