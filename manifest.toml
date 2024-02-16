@@ -7,7 +7,7 @@ name = "GitLab Runner"
 description.en = "Continuous integration tool to use with a GitLab instance (YNH or not)"
 description.fr = "Outil d'intégration continue à utiliser avec une instance GitLab (YNH ou non)"
 
-version = "16.8.0~ynh1"
+version = "16.8.1~ynh1"
 
 maintainers = ["kay0u"]
 
@@ -57,14 +57,14 @@ ram.runtime = "50M"
 [resources]
     [resources.sources.main]
     rename = "gitlab-runner.deb"
-    amd64.url = "https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v16.8.0/downloads/packages/deb/gitlab-runner_amd64.deb"
-    amd64.sha256 = "e53831ba33399db2419a36bf29baf8183f18f83204ec30446914888a099b832a"
-    i386.url = "https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v16.8.0/downloads/packages/deb/gitlab-runner_i386.deb"
-    i386.sha256 = "bf591042992b083294b05401f2fe7d00ac8d15def15ce3da6451e5158d8c51e6"
-    arm64.url = "https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v16.8.0/downloads/packages/deb/gitlab-runner_arm64.deb"
-    arm64.sha256 = "426eb758ed7a4b32e877ab266e0496da5fac2be9bf433fe47acbd946197f3615"
-    armhf.url = "https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v16.8.0/downloads/packages/deb/gitlab-runner_armhf.deb"
-    armhf.sha256 = "7201b77b23ace82f67d20859b4e63bfaa0b8a2045e44a3e530d866e39d7370a5"
+    amd64.url = "https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v16.8.1/downloads/packages/deb/gitlab-runner_amd64.deb"
+    amd64.sha256 = "070aab90fbe8d574521b17415fecb6bdbd710662a41bbea2e94e514e9a260569"
+    i386.url = "https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v16.8.1/downloads/packages/deb/gitlab-runner_i386.deb"
+    i386.sha256 = "8868c3f8bfd42a3e2470a19c63297b4266f9ed33c159edf9df7dc7ea676fb301"
+    arm64.url = "https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v16.8.1/downloads/packages/deb/gitlab-runner_arm64.deb"
+    arm64.sha256 = "4820743e821ca2a9e2bf4166187e09aa49d131f3a96e626b382ab94a230170e6"
+    armhf.url = "https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v16.8.1/downloads/packages/deb/gitlab-runner_armhf.deb"
+    armhf.sha256 = "687f738a52e97e3fb5f4b7b5ea728de4022c4acca4b59ccbf02e6ac76f8d4a46"
 
     autoupdate.upstream = "https://gitlab.com/gitlab-org/gitlab-runner"
     autoupdate.strategy = "latest_gitlab_release"
