@@ -24,7 +24,7 @@ test ! -d /etc/$app \
 ynh_script_progression --message="Reinstalling GitLab Runner..."
 
 tempdir="$(mktemp -d)"
-ynh_setup_source --dest_dir=$tempdir
+ynh_setup_source --dest_dir=$tempdir --full_replace=1
 dpkg -i $tempdir/gitlab-runner.deb
 ynh_secure_remove --file="$tempdir"
 
