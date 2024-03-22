@@ -18,8 +18,7 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 
 GitLab Runner is a continuous integration tool to use with a GitLab instance (YNH or not).
 
-
-**Shipped version:** 16.9.0~ynh1
+**Shipped version:** 16.10.0~ynh1
 
 ## Screenshots
 
@@ -27,11 +26,11 @@ GitLab Runner is a continuous integration tool to use with a GitLab instance (YN
 
 ## Documentation and resources
 
-* Official app website: <https://gitlab.com/gitlab-org/gitlab-runner>
-* Official admin documentation: <https://docs.gitlab.com/runner/>
-* Upstream app code repository: <https://gitlab.com/gitlab-org/gitlab-runner>
-* YunoHost Store: <https://apps.yunohost.org/app/gitlab-runner>
-* Report a bug: <https://github.com/YunoHost-Apps/gitlab-runner_ynh/issues>
+- Official app website: <https://gitlab.com/gitlab-org/gitlab-runner>
+- Official admin documentation: <https://docs.gitlab.com/runner/>
+- Upstream app code repository: <https://gitlab.com/gitlab-org/gitlab-runner>
+- YunoHost Store: <https://apps.yunohost.org/app/gitlab-runner>
+- Report a bug: <https://github.com/YunoHost-Apps/gitlab-runner_ynh/issues>
 
 ## Developer info
 
@@ -39,7 +38,7 @@ Please send your pull request to the [testing branch](https://github.com/YunoHos
 
 To try the testing branch, please proceed like that.
 
-``` bash
+```bash
 sudo yunohost app install https://github.com/YunoHost-Apps/gitlab-runner_ynh/tree/testing --debug
 or
 sudo yunohost app upgrade gitlab-runner -u https://github.com/YunoHost-Apps/gitlab-runner_ynh/tree/testing --debug
