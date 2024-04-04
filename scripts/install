@@ -46,6 +46,11 @@ ynh_app_setting_set --app=$app --key=executor --value=$executor
 #=================================================
 ynh_script_progression --message="Setting up source files..."
 
+# Make sure docker is running before installing gitlab-runner
+if ! systemctl is-active --quiet docker; then
+	ynh_systemd_action --service_name=docker --action=restart --line_match="API listen on /run/docker.sock"
+fi
+
 tempdir="$(mktemp -d)"
 ynh_setup_source --dest_dir=$tempdir
 dpkg -i $tempdir/gitlab-runner.deb

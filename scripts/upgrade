@@ -32,6 +32,11 @@ if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
 	ynh_script_progression --message="Upgrading source files..." --weight=1
 
+	# Make sure docker is running before installing gitlab-runner
+	if ! systemctl is-active --quiet docker; then
+		ynh_systemd_action --service_name=docker --action=restart --line_match="API listen on /run/docker.sock"
+	fi
+
 	tempdir="$(mktemp -d)"
 	ynh_setup_source --dest_dir=$tempdir
 	dpkg -i $tempdir/gitlab-runner.deb
