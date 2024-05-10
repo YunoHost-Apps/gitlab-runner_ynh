@@ -3,7 +3,7 @@
 请勿手动编辑。
 -->
 
-# YunoHost 的 GitLab Runner
+# YunoHost 上的 GitLab Runner
 
 [![集成程度](https://dash.yunohost.org/integration/gitlab-runner.svg)](https://dash.yunohost.org/appci/app/gitlab-runner) ![工作状态](https://ci-apps.yunohost.org/ci/badges/gitlab-runner.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/gitlab-runner.maintain.svg)
 
