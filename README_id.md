@@ -29,7 +29,7 @@ GitLab Runner is a continuous integration tool to use with a GitLab instance (YN
 
 - Website aplikasi resmi: <https://gitlab.com/gitlab-org/gitlab-runner>
 - Dokumentasi admin resmi: <https://docs.gitlab.com/runner/>
-- Repositori kode aplikasi hulu: <https://gitlab.com/gitlab-org/gitlab-runner>
+- Depot kode aplikasi hulu: <https://gitlab.com/gitlab-org/gitlab-runner>
 - Gudang YunoHost: <https://apps.yunohost.org/app/gitlab-runner>
 - Laporkan bug: <https://github.com/YunoHost-Apps/gitlab-runner_ynh/issues>
 
