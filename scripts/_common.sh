@@ -4,9 +4,6 @@
 # COMMON VARIABLES
 #=================================================
 
-# dependencies used by the app
-#REMOVEME? pkg_dependencies="ca-certificates git curl tar docker-ce docker-ce-cli containerd.io"
-
 #=================================================
 # PERSONAL HELPERS
 #=================================================
