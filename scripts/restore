@@ -15,9 +15,6 @@ source /usr/share/yunohost/helpers
 #=================================================
 ynh_script_progression --message="Validating restoration parameters..."
 
-test ! -d /etc/$app \
-	|| ynh_die --message="There is already a directory: /etc/$app "
-
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
