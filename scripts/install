@@ -14,8 +14,6 @@ source /usr/share/yunohost/helpers
 #=================================================
 ynh_script_progression --message="Validating installation parameters..."
 
-test ! -e "/etc/$app" || ynh_die "This path already contains a folder"
-
 # By default, the runner will use docker to run your builds. PR are welcomes to implement more executors
 executor="docker"
 
