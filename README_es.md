@@ -35,7 +35,7 @@ GitLab Runner is a continuous integration tool to use with a GitLab instance (YN
 
 ## Información para desarrolladores
 
-Por favor enviar sus correcciones a la [`branch testing`](https://github.com/YunoHost-Apps/gitlab-runner_ynh/tree/testing
+Por favor enviar sus correcciones a la [rama `testing`](https://github.com/YunoHost-Apps/gitlab-runner_ynh/tree/testing).
 
 Para probar la rama `testing`, sigue asÍ:
 
