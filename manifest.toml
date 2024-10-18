@@ -7,7 +7,7 @@ name = "GitLab Runner"
 description.en = "Continuous integration tool to use with a GitLab instance (YNH or not)"
 description.fr = "Outil d'intégration continue à utiliser avec une instance GitLab (YNH ou non)"
 
-version = "17.3.1~ynh1"
+version = "17.5.1~ynh1"
 
 maintainers = ["kay0u"]
 
@@ -57,14 +57,14 @@ ram.runtime = "50M"
 [resources]
     [resources.sources.main]
     rename = "gitlab-runner.deb"
-    amd64.url = "https://gitlab-runner-downloads.s3.amazonaws.com/v17.3.1/deb/gitlab-runner_amd64.deb"
-    amd64.sha256 = "e9642903469cf1842f1c7fcf4a11a2994629f4aed36639cda1a212b562a12f9e"
-    i386.url = "https://gitlab-runner-downloads.s3.amazonaws.com/v17.3.1/deb//gitlab-runner_i386.deb"
-    i386.sha256 = "b648947a02361188886043a38ccd8b0c2ee242df3a171fb069ee59a379f6b616"
-    arm64.url = "https://gitlab-runner-downloads.s3.amazonaws.com/v17.3.1/deb/gitlab-runner_arm64.deb"
-    arm64.sha256 = "fcdee00728d9d0fe7d50e014d6c26adceeec75712b92d765553898ebb051e724"
-    armhf.url = "https://gitlab-runner-downloads.s3.amazonaws.com/v17.3.1/deb/gitlab-runner_armhf.deb"
-    armhf.sha256 = "6c2d730e2e778a72244518352dd3189803fd627226202c596264edade3ba5772"
+    amd64.url = "https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v17.5.1/downloads/packages/deb/gitlab-runner_amd64.deb"
+    amd64.sha256 = "219bc4eb95ac21f2bd5391f78a30f3275e4b9cd896dae131fd8ab82f00079640"
+    i386.url = "https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v17.5.1/downloads/packages/deb/gitlab-runner_i386.deb"
+    i386.sha256 = "903305c9f19293496735fb5010842766865dcfdeaeb9778bf79ec354a9760c2d"
+    arm64.url = "https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v17.5.1/downloads/packages/deb/gitlab-runner_arm64.deb"
+    arm64.sha256 = "17da786aeaff7c8ceb305039f868c13442b31c396504e2b460d77fa5f60728f7"
+    armhf.url = "https://gitlab.com/gitlab-org/gitlab-runner/-/releases/v17.5.1/downloads/packages/deb/gitlab-runner_armhf.deb"
+    armhf.sha256 = "103c7845b40ae6901ad39e3789730e2e3b245a78bab889ad4cb21a6d1352f89e"
 
     autoupdate.upstream = "https://gitlab.com/gitlab-org/gitlab-runner"
     autoupdate.strategy = "latest_gitlab_release"
