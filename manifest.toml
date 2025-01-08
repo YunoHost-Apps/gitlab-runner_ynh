@@ -73,6 +73,14 @@ ram.runtime = "50M"
     autoupdate.asset.arm64 = "package: DEB arm64"
     autoupdate.asset.armhf = "package: DEB armhf"
 
+    # update when the above updates
+    [resources.sources.images]
+    rename = "gitlab-runner-images.deb"
+    url = "https://s3.amazonaws.com/gitlab-runner-downloads/v17.7.0/deb/gitlab-runner-helper-images.deb"
+    sha256 = "a18fbbb8d894c270d2b89c82a3d4346980c2aecf083eddb5f75b86e22d61cc2b"
+    format = "whatever"
+    extract = false
+
     [resources.system_user]
 
     [resources.install_dir]
