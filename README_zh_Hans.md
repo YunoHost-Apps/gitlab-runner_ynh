@@ -5,7 +5,9 @@
 
 # YunoHost 上的 GitLab Runner
 
-[![集成程度](https://dash.yunohost.org/integration/gitlab-runner.svg)](https://ci-apps.yunohost.org/ci/apps/gitlab-runner/) ![工作状态](https://ci-apps.yunohost.org/ci/badges/gitlab-runner.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/gitlab-runner.maintain.svg)
+[![集成程度](https://apps.yunohost.org/badge/integration/gitlab-runner)](https://ci-apps.yunohost.org/ci/apps/gitlab-runner/)
+![工作状态](https://apps.yunohost.org/badge/state/gitlab-runner)
+![维护状态](https://apps.yunohost.org/badge/maintained/gitlab-runner)
 
 [![使用 YunoHost 安装 GitLab Runner](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=gitlab-runner)
 
@@ -19,7 +21,7 @@
 GitLab Runner is a continuous integration tool to use with a GitLab instance (YNH or not).
 
 
-**分发版本：** 17.3.1~ynh1
+**分发版本：** 17.7.0~ynh1
 
 ## 截图
 

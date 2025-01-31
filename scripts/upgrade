@@ -39,7 +39,8 @@ then
 
 	tempdir="$(mktemp -d)"
 	ynh_setup_source --dest_dir=$tempdir
-	dpkg -i $tempdir/gitlab-runner.deb
+	ynh_setup_source --dest_dir=$tempdir --source_id="images"
+	dpkg -i $tempdir/gitlab-runner-images.deb $tempdir/gitlab-runner.deb
 	ynh_secure_remove --file="$tempdir"
 fi
 

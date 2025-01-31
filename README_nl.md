@@ -5,7 +5,9 @@ Hij mag NIET handmatig aangepast worden.
 
 # GitLab Runner voor Yunohost
 
-[![Integratieniveau](https://dash.yunohost.org/integration/gitlab-runner.svg)](https://ci-apps.yunohost.org/ci/apps/gitlab-runner/) ![Mate van functioneren](https://ci-apps.yunohost.org/ci/badges/gitlab-runner.status.svg) ![Onderhoudsstatus](https://ci-apps.yunohost.org/ci/badges/gitlab-runner.maintain.svg)
+[![Integratieniveau](https://apps.yunohost.org/badge/integration/gitlab-runner)](https://ci-apps.yunohost.org/ci/apps/gitlab-runner/)
+![Mate van functioneren](https://apps.yunohost.org/badge/state/gitlab-runner)
+![Onderhoudsstatus](https://apps.yunohost.org/badge/maintained/gitlab-runner)
 
 [![GitLab Runner met Yunohost installeren](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=gitlab-runner)
 
@@ -19,7 +21,7 @@ Hij mag NIET handmatig aangepast worden.
 GitLab Runner is a continuous integration tool to use with a GitLab instance (YNH or not).
 
 
-**Geleverde versie:** 17.3.1~ynh1
+**Geleverde versie:** 17.7.0~ynh1
 
 ## Schermafdrukken
 
