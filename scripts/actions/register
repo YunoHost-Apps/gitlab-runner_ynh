@@ -31,17 +31,17 @@ architecture=$(ynh_app_setting_get --app=$app --key=architecture)
 
 # Adding a comma at the end
 if [ ${new_gitlab_url: -1} != "," ]; then
-	new_gitlab_url=${new_gitlab_url},
+    new_gitlab_url=${new_gitlab_url},
 fi
 
 # Adding a comma at the end
 if [ ${new_token: -1} != "," ]; then
-	new_token=${new_token},
+    new_token=${new_token},
 fi
 
 # Adding a comma at the end
 if [ ${new_docker_image: -1} != "," ]; then
-	new_docker_image=${new_docker_image},
+    new_docker_image=${new_docker_image},
 fi
 
 #=================================================
@@ -51,9 +51,9 @@ ynh_script_progression --message="Backing up the app before action (may take a w
 
 # Backup the current version of the app
 ynh_backup_before_action
-ynh_clean_setup () {
-	# restore it if the action fails
-	ynh_restore_actionbackup
+ynh_clean_setup() {
+    # restore it if the action fails
+    ynh_restore_actionbackup
 }
 # Exit if an error occurs during the execution of the script
 ynh_abort_if_errors
@@ -61,7 +61,6 @@ ynh_abort_if_errors
 #=================================================
 # CHECK IF AN ACTION HAS TO BE DONE
 #=================================================
-
 
 #=================================================
 # SPECIFIC ACTION
@@ -75,27 +74,22 @@ split_char=","
 
 nb_to_register=$(echo "${new_gitlab_url}" | awk -F"${split_char}" '{print NF-1}')
 
-for i in $(seq $nb_to_register)
-do
-	url=$(echo $new_gitlab_url | cut -d$split_char -f$i)
-	tok=$(echo $new_token | cut -d$split_char -f$i)
-	docker_img=$(echo $new_docker_image | cut -d$split_char -f$i)
+for i in $(seq $nb_to_register); do
+    url=$(echo $new_gitlab_url | cut -d$split_char -f$i)
+    tok=$(echo $new_token | cut -d$split_char -f$i)
+    docker_img=$(echo $new_docker_image | cut -d$split_char -f$i)
 
-	# Register the runner
-	ynh_exec_warn_less $app register \
-		--non-interactive \
-		--url "$url" \
-		--registration-token "$tok" \
-		--executor "$executor" \
-		--docker-image "$docker_img" \
-		--description "Yunohost runner" \
-		--tag-list "$executor,$YNH_ARCH" \
-		--run-untagged \
-		--locked="false"
+    # Register the runner
+    ynh_exec_warn_less $app register \
+        --non-interactive \
+        --url "$url" \
+        --token "$tok" \
+        --executor "$executor" \
+        --docker-image "$docker_img"
 
-	gitlab_url=${gitlab_url}${url},
-	token=${token}${tok},
-	docker_image=${docker_image}${docker_img},
+    gitlab_url=${gitlab_url}${url},
+    token=${token}${tok},
+    docker_image=${docker_image}${docker_img},
 done
 
 #=================================================

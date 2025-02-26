@@ -38,23 +38,18 @@ split_char=","
 
 nb_to_register=$(echo "${gitlab_url}" | awk -F"${split_char}" '{print NF-1}')
 
-for i in $(seq $nb_to_register)
-do
-	url=$(echo $gitlab_url | cut -d$split_char -f$i)
-	tok=$(echo $token | cut -d$split_char -f$i)
-	docker_img=$(echo $docker_image | cut -d$split_char -f$i)
+for i in $(seq $nb_to_register); do
+    url=$(echo $gitlab_url | cut -d$split_char -f$i)
+    tok=$(echo $token | cut -d$split_char -f$i)
+    docker_img=$(echo $docker_image | cut -d$split_char -f$i)
 
-	# Register the runner
-	ynh_exec_warn_less $app register \
-		--non-interactive \
-		--url "$url" \
-		--registration-token "$tok" \
-		--executor "$executor" \
-		--docker-image "$docker_img" \
-		--description "Yunohost runner" \
-		--tag-list "$executor,$YNH_ARCH" \
-		--run-untagged \
-		--locked="false"
+    # Register the runner
+    ynh_exec_warn_less $app register \
+        --non-interactive \
+        --url "$url" \
+        --token "$tok" \
+        --executor "$executor" \
+        --docker-image "$docker_img"
 done
 
 #=================================================

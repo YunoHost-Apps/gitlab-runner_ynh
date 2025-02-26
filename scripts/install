@@ -19,17 +19,17 @@ executor="docker"
 
 # Adding a comma at the end
 if [ ${gitlab_url: -1} != "," ]; then
-	gitlab_url=${gitlab_url},
+    gitlab_url=${gitlab_url},
 fi
 
 # Adding a comma at the end
 if [ ${token: -1} != "," ]; then
-	token=${token},
+    token=${token},
 fi
 
 # Adding a comma at the end
 if [ ${docker_image: -1} != "," ]; then
-	docker_image=${docker_image},
+    docker_image=${docker_image},
 fi
 
 #=================================================
@@ -46,7 +46,7 @@ ynh_script_progression --message="Setting up source files..."
 
 # Make sure docker is running before installing gitlab-runner
 if ! systemctl is-active --quiet docker; then
-	ynh_systemd_action --service_name=docker --action=restart --line_match="API listen on /run/docker.sock"
+    ynh_systemd_action --service_name=docker --action=restart --line_match="API listen on /run/docker.sock"
 fi
 
 tempdir="$(mktemp -d)"
@@ -67,23 +67,18 @@ split_char=","
 
 nb_to_register=$(echo "${gitlab_url}" | awk -F"${split_char}" '{print NF-1}')
 
-for i in $(seq $nb_to_register)
-do
-	url=$(echo $gitlab_url | cut -d$split_char -f$i)
-	tok=$(echo $token | cut -d$split_char -f$i)
-	docker_img=$(echo $docker_image | cut -d$split_char -f$i)
+for i in $(seq $nb_to_register); do
+    url=$(echo $gitlab_url | cut -d$split_char -f$i)
+    tok=$(echo $token | cut -d$split_char -f$i)
+    docker_img=$(echo $docker_image | cut -d$split_char -f$i)
 
-	# Register the runner
-	ynh_exec_warn_less $app register \
-		--non-interactive \
-		--url "$url" \
-		--registration-token "$tok" \
-		--executor "$executor" \
-		--docker-image "$docker_img" \
-		--description "YunoHost runner" \
-		--tag-list "$executor,$YNH_ARCH" \
-		--run-untagged \
-		--locked="false"
+    # Register the runner
+    ynh_exec_warn_less $app register \
+        --non-interactive \
+        --url "$url" \
+        --token "$tok" \
+        --executor "$executor" \
+        --docker-image "$docker_img"
 done
 
 #=================================================
