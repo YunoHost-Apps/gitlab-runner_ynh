@@ -68,10 +68,10 @@ ram.runtime = "50M"
 
     autoupdate.upstream = "https://gitlab.com/gitlab-org/gitlab-runner"
     autoupdate.strategy = "latest_gitlab_release"
-    autoupdate.asset.amd64 = "gitlab-runner_amd64.deb"
-    autoupdate.asset.i386 = "gitlab-runner_i386.deb"
-    autoupdate.asset.arm64 = "gitlab-runner_arm64.deb"
-    autoupdate.asset.armhf = "gitlab-runner_armhf.deb"
+    autoupdate.asset.amd64 = "package: DEB amd64"
+    autoupdate.asset.i386 = "package: DEB i386"
+    autoupdate.asset.arm64 = "package: DEB arm64"
+    autoupdate.asset.armhf = "package: DEB armhf"
 
     # update when the above updates
     [resources.sources.images]
