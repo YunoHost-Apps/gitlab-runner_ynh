@@ -19,7 +19,7 @@ test_format = 1.0
     # Sometimes we need to flush the runners with:
     # curl --header "PRIVATE-TOKEN: $PRIVATE-TOKEN" "https://gitlab.com/api/v4/projects/17616325/runners/?per_page=100" | jq '.[].id' | xargs -0 -t -I % -P $(nproc) curl --request DELETE --header "PRIVATE-TOKEN: $PRIVATE-TOKEN" "https://gitlab.com/api/v4/runners/%"
     # where PRIVATE-TOKEN is an access token with "manage_runner" permission, and 17616325 is the project ID of https://gitlab.com/kay0u/gitlab-runner_ynh (repo used by package_check)
-    args.token = "glrt-t3_Asn6EavYHicLzAQZBiy4"
+    args.token = "glrt-t3_pDG8xugQDbhHDzeVt4gN"
     args.docker_image = "alpine:latest"
 
     test_upgrade_from.84ce8e1.name = "Last packaging v1 version"
