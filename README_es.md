@@ -21,7 +21,7 @@ No se debe editar a mano.
 GitLab Runner is a continuous integration tool to use with a GitLab instance (YNH or not).
 
 
-**Versión actual:** 17.7.0~ynh1
+**Versión actual:** 17.9.0~ynh1
 
 ## Capturas
 
