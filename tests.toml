@@ -4,7 +4,6 @@ test_format = 1.0
 
 [default]
 
-
     # ------------
     # Tests to run
     # ------------
@@ -22,4 +21,9 @@ test_format = 1.0
     args.token = "glrt-t3_pDG8xugQDbhHDzeVt4gN"
     args.docker_image = "alpine:latest"
 
-    test_upgrade_from.84ce8e1.name = "Last packaging v1 version"
+    # -------------------------------
+    # Commits to test upgrade from
+    # -------------------------------
+
+    # test_upgrade_from.84ce8e1.name = "Last packaging v1 version"
+    test_upgrade_from.00b77585b6ac47d4601cd4edfedfe4a365306485.name = "Upgrade from 17.9.0~ynh1"
